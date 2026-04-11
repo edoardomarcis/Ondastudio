@@ -189,6 +189,128 @@
     }
     .hero-svg-wrap { width: min(440px, 90%); aspect-ratio: 1; }
 
+    /* ─── EDITORIAL PHOTOS ────────────────────────── */
+    .photo-frame {
+      border: 7px solid var(--white);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.16), 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+      display: block;
+      position: absolute;
+    }
+    .photo-frame img {
+      display: block; width: 100%; height: 100%;
+      object-fit: cover; transition: transform .6s ease;
+    }
+    .photo-frame:hover img { transform: scale(1.04); }
+
+    /* Hero photo stack */
+    .hero-photos {
+      position: relative;
+      width: min(400px, 90%);
+      height: 500px;
+    }
+    .hero-photo-back {
+      width: 270px; height: 360px;
+      top: 0; right: 0;
+      transform: rotate(4.5deg);
+      z-index: 1;
+    }
+    .hero-photo-front {
+      width: 250px; height: 310px;
+      bottom: 0; left: 0;
+      transform: rotate(-2.5deg);
+      z-index: 2;
+    }
+
+    /* Caption strip on photo */
+    .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(15,42,68,.55));
+      padding: 28px 14px 10px;
+      font-size: 9px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(247,247,245,.7);
+    }
+
+    /* Insight photo */
+    .insight-left {
+      position: relative;
+    }
+    .insight-photo-wrap {
+      position: relative;
+      height: 260px;
+      margin-bottom: 40px;
+    }
+    .insight-photo-frame {
+      width: 88%; height: 260px;
+      top: 0; left: 0;
+      transform: rotate(-2deg);
+      z-index: 1;
+    }
+    .insight-photo-tag {
+      position: absolute;
+      bottom: -12px; right: 0;
+      background: var(--green-deep);
+      color: var(--bg);
+      font-size: 9px; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      z-index: 3;
+    }
+
+    /* Editorial breaker */
+    .editorial-break {
+      position: relative;
+      height: clamp(320px, 40vw, 520px);
+      overflow: hidden;
+    }
+    .editorial-break-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 55%;
+      transform: scale(1.03);
+      transition: transform 8s ease;
+    }
+    .editorial-break:hover .editorial-break-img { transform: scale(1); }
+    .editorial-break-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg, rgba(15,42,68,.72) 0%, rgba(15,42,68,.3) 55%, rgba(15,42,68,.1) 100%);
+      display: flex; align-items: flex-end;
+      padding: clamp(32px, 5vw, 72px);
+    }
+    .editorial-break-text { max-width: 560px; }
+    .editorial-break-label {
+      font-size: 10px; font-weight: 500; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--sand); opacity: .65;
+      margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+    }
+    .editorial-break-label::before {
+      content: ''; display: block; width: 28px; height: 1px; background: var(--sand);
+    }
+    .editorial-break-quote {
+      font-family: var(--f-display);
+      font-size: clamp(26px, 3.2vw, 44px);
+      font-style: italic; font-weight: 300;
+      color: var(--bg); line-height: 1.25;
+    }
+
+    /* Case card photo */
+    .case-photo {
+      height: 160px;
+      margin: -32px -32px 28px;
+      overflow: hidden; position: relative;
+    }
+    .case-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .case-card:hover .case-photo img { transform: scale(1.05); }
+    .case-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(15,42,68,.3));
+    }
+
     /* ─── MARQUEE ─────────────────────────────────── */
     .marquee-bar {
       border-top: 1px solid rgba(15,42,68,.08);
@@ -604,24 +726,15 @@
     </div>
   </div>
   <div class="hero-visual" id="h-visual">
-    <div class="hero-svg-wrap">
-      <svg viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="220" cy="220" r="200" fill="rgba(15,42,68,0.03)"/>
-        <circle cx="220" cy="220" r="150" stroke="#0F2A44" stroke-width="0.5" opacity="0.06" stroke-dasharray="3 7"/>
-        <circle cx="220" cy="220" r="100" stroke="#0F2A44" stroke-width="0.5" opacity="0.04" stroke-dasharray="2 5"/>
-        <path d="M60 220 C100 178,140 262,180 220 C220 178,260 262,300 220 C340 178,380 262,420 220" stroke="#0F2A44" stroke-width="1.5" opacity="0.14" fill="none" stroke-linecap="round"/>
-        <path d="M60 238 C100 196,140 280,180 238 C220 196,260 280,300 238 C340 196,380 280,420 238" stroke="#0F2A44" stroke-width="1.2" opacity="0.1" fill="none" stroke-linecap="round"/>
-        <path d="M60 256 C100 214,140 298,180 256 C220 214,260 298,300 256 C340 214,380 298,420 256" stroke="#0F2A44" stroke-width="0.8" opacity="0.07" fill="none" stroke-linecap="round"/>
-        <path d="M60 202 C100 160,140 244,180 202 C220 160,260 244,300 202 C340 160,380 244,420 202" stroke="#0F2A44" stroke-width="1" opacity="0.08" fill="none" stroke-linecap="round"/>
-        <path d="M60 184 C100 142,140 226,180 184 C220 142,260 226,300 184 C340 142,380 226,420 184" stroke="#3E6C8F" stroke-width="0.6" opacity="0.07" fill="none" stroke-linecap="round"/>
-        <circle cx="220" cy="220" r="10" fill="rgba(47,93,80,0.15)"/>
-        <circle cx="220" cy="220" r="5" fill="#2F5D50" opacity="0.4"/>
-        <circle cx="220" cy="220" r="2" fill="#2F5D50" opacity="0.7"/>
-        <circle cx="88" cy="168" r="3.5" fill="#6F8F7B" opacity="0.35"/>
-        <circle cx="360" cy="288" r="3.5" fill="#6F8F7B" opacity="0.35"/>
-        <circle cx="148" cy="320" r="2.5" fill="#3E6C8F" opacity="0.3"/>
-        <circle cx="316" cy="128" r="2.5" fill="#3E6C8F" opacity="0.3"/>
-      </svg>
+    <div class="hero-photos">
+      <div class="photo-frame hero-photo-back">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80&fit=crop&crop=center" alt="Sailing — luoghi da vivere">
+        <span class="photo-caption">Costa atlantica, Portogallo</span>
+      </div>
+      <div class="photo-frame hero-photo-front">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80&fit=crop&crop=center" alt="Esperienza autentica">
+        <span class="photo-caption">Terrazza, Mediterraneo</span>
+      </div>
     </div>
   </div>
 </section>
@@ -686,7 +799,13 @@
 <section class="sec insight">
   <div class="wrap">
     <div class="insight-layout">
-      <div>
+      <div class="insight-left">
+        <div class="insight-photo-wrap gsap-up">
+          <div class="photo-frame insight-photo-frame">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=700&q=80&fit=crop&crop=center" alt="Experience design sul campo">
+          </div>
+          <span class="insight-photo-tag">Experience first</span>
+        </div>
         <p class="label gsap-up">Il vero limite</p>
         <p class="insight-quote gsap-up">
           "Il problema non è<br>il marketing.<br>
@@ -831,6 +950,21 @@
   </div>
 </section>
 
+
+<!-- ─── EDITORIAL BREAK ────────────────────────────── -->
+<div class="editorial-break">
+  <img class="editorial-break-img" src="https://images.unsplash.com/photo-1502920514313-52581002a659?w=1600&q=80&fit=crop&crop=center" alt="Luoghi straordinari">
+  <div class="editorial-break-overlay">
+    <div class="editorial-break-text">
+      <p class="editorial-break-label">Osservazione dal campo</p>
+      <p class="editorial-break-quote">
+        "Nei mercati dove funziona,<br>
+        non hanno posizioni migliori.<br>
+        Hanno offerte più progettate."
+      </p>
+    </div>
+  </div>
+</div>
 
 <!-- ─── 7. COSA CAMBIA + RISULTATI ─────────────────── -->
 <section class="sec trasformazioni">
@@ -1029,11 +1163,19 @@
       <div>
         <div class="cred-cases">
           <div class="case-card gsap-up">
+            <div class="case-photo">
+              <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=700&q=80&fit=crop&crop=center" alt="Surf school Portogallo">
+              <div class="case-photo-overlay"></div>
+            </div>
             <span class="case-type">Surf School — Portogallo</span>
             <p class="case-result">Da lezioni singole a percorso in 3 livelli con community: +180% valore medio per cliente</p>
             <p class="case-desc">Il prodotto era lo stesso. Hanno aggiunto struttura, naming, una logica di progressione e un gruppo WhatsApp post-corso. Il prezzo è triplicato perché l'esperienza aveva senso come percorso, non come singolo episodio.</p>
           </div>
           <div class="case-card gsap-up">
+            <div class="case-photo">
+              <img src="https://images.unsplash.com/photo-1444681961652-685ee8ac8370?w=700&q=80&fit=crop&crop=center" alt="Agriturismo Italia">
+              <div class="case-photo-overlay"></div>
+            </div>
             <span class="case-type">Agriturismo — Italia</span>
             <p class="case-result">Da 3 a 7 mesi di stagione attiva ridisegnando l'offerta autunnale e invernale</p>
             <p class="case-desc">Avevano già tutto: la cantina, i produttori vicini, la storia del territorio. Mancava solo il disegno. Con tre nuove esperienze stagionali progettate, hanno riempito mesi che prima erano vuoti.</p>
