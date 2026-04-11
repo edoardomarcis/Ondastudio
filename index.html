@@ -834,6 +834,141 @@
       .cta-bottom-note { text-align: left; }
       .footer { flex-direction: column; gap: 16px; text-align: center; }
     }
+
+    /* ─── MOBILE (≤768px) ─────────────────────────── */
+    @media (max-width: 768px) {
+      /* Hero actions: stack vertically to avoid overflow */
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+      /* Nav: reduce button padding on smaller screens */
+      .nav .btn--outline { padding: 11px 20px; font-size: 12px; }
+
+      /* Reduce section spacing */
+      :root { --sec: clamp(72px, 10vw, 120px); }
+    }
+
+    /* ─── SMALL PHONES (≤640px) ───────────────────── */
+    @media (max-width: 640px) {
+      /* Tokens */
+      :root { --sec: 72px; }
+
+      /* Hero */
+      .hero { padding-top: 100px; padding-bottom: 56px; }
+      .hero-title { font-size: clamp(38px, 10.5vw, 54px); }
+      .hero-sub { font-size: 16px; margin-bottom: 36px; max-width: 100%; }
+      .hero-for { margin-bottom: 32px; font-size: 10px; }
+
+      /* Nav */
+      .nav { padding: 18px var(--pad); }
+      .nav .btn--outline { padding: 10px 16px; font-size: 11px; letter-spacing: .03em; }
+      .nav-logo { font-size: 18px; }
+
+      /* Problem */
+      .problem-cell { padding: 32px 28px; }
+
+      /* Insight */
+      .insight-layout { gap: 40px; }
+      .insight-photo-wrap { height: 220px; }
+      .insight-photo-frame { height: 220px; }
+
+      /* Opportunity */
+      .opp-card { padding: 36px 28px; }
+
+      /* Approccio */
+      .pillar { padding: 36px 28px; }
+      .approccio-layout { gap: 40px; }
+
+      /* Transformation rows: reflow to single column */
+      .trasf-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 20px 24px;
+      }
+      .trasf-from { font-size: 13px; }
+      .trasf-arrow { text-align: left; font-size: 14px; }
+      .trasf-to { font-size: 14px; }
+
+      /* Risultati */
+      .risultato { padding: 24px 22px 20px; }
+
+      /* Per chi è */
+      .perchi-col { padding: 36px 28px; }
+      .perchi-title { font-size: 26px; }
+
+      /* Come iniziare */
+      .perche-card { padding: 32px 28px; }
+      .perche-num { font-size: 32px; }
+
+      /* Sessione */
+      .sessione-highlight { padding: 36px 28px; }
+      .sessione-price { font-size: 40px; }
+      .sessione-layout { gap: 40px; }
+
+      /* About */
+      .about-layout { gap: 40px; }
+      .about-photo-wrap { height: 300px; }
+      .about-photo-main { width: 190px; height: 254px; left: 10px; }
+      .about-photo-accent { width: 135px; height: 163px; right: 0; }
+      .about-intro { font-size: 17px; }
+      .about-quote { font-size: clamp(18px, 4.5vw, 26px); }
+
+      /* Vision */
+      .vision-data { padding: 28px 24px; }
+      .vision-stat-num { font-size: 44px; }
+
+      /* Garanzia */
+      .garanzia-box { padding: 36px 28px; gap: 36px; }
+      .garanzia-mechanic { padding: 28px 24px; }
+      .garanzia-mechanic-num { font-size: 48px; }
+
+      /* Cred stats */
+      .cred-stat { padding: 20px; }
+      .cred-stat-num { font-size: 34px; }
+
+      /* Editorial break */
+      .editorial-break-overlay { padding: 28px 24px; }
+      .editorial-break-quote { font-size: clamp(22px, 5.5vw, 38px); }
+
+      /* CTA stripe: remove inline breaks */
+      .cta-stripe-nudge br { display: none; }
+      .cta-stripe-nudge { font-size: clamp(14px, 3.8vw, 18px); }
+
+      /* Micro bridge — lascia che vada a capo naturalmente su mobile */
+
+      /* h-section */
+      .h-section { font-size: clamp(28px, 8vw, 46px); }
+
+      /* h-display */
+      .h-display { font-size: clamp(38px, 10vw, 76px); }
+
+      /* Labels */
+      .label { margin-bottom: 20px; }
+
+      /* CTA top/bottom */
+      .cta-top { padding: 72px 0; }
+      .cta-bottom { padding: 56px 0; }
+      .cta-sub { font-size: 15px; }
+
+      /* FAQ */
+      .faq-question span { font-size: 15px; }
+      .faq-layout { gap: 32px; }
+
+      /* Footer */
+      .footer { padding: 28px var(--pad); gap: 12px; }
+      .footer-links { gap: 20px; }
+    }
+
+    /* ─── VERY SMALL PHONES (≤390px) ─────────────── */
+    @media (max-width: 390px) {
+      .nav-logo { font-size: 16px; }
+      .nav .btn--outline { padding: 9px 12px; font-size: 11px; }
+      .hero-title { font-size: clamp(34px, 10vw, 50px); }
+      .problem-cell { padding: 28px 22px; }
+      .perchi-col { padding: 28px 22px; }
+      .sessione-highlight { padding: 28px 22px; }
+      .garanzia-box { padding: 28px 22px; }
+      .perche-card { padding: 28px 22px; }
+    }
   </style>
 </head>
 <body>
@@ -1472,7 +1607,7 @@
             <span>Devo già avere un'offerta strutturata?</span>
             <div class="faq-icon">+</div>
           </button>
-          <p class="faq-answer">Sì, è necessario avere almeno una stagione di attività alle spalle e un'offerta attiva. Non lavoriamo su idee — lavoriamo su realtà esistenti con potenziale non espresso. Se sei in fase di start-up, torna quando hai qualcosa su cui costruire.</p>
+          <p class="faq-answer">Non necessariamente. Se hai già un'attività avviata, lavoriamo sull'evoluzione e sul potenziale non espresso. Ma se sei in una fase in cui l'offerta è ancora da costruire, possiamo fare un lavoro più profondo di struttura — partendo da chi sei, dal contesto in cui operi e da cosa vuoi creare. In questo caso la sessione diventa il punto di partenza per disegnare qualcosa di solido fin dall'inizio.</p>
         </div>
         <div class="faq-item gsap-up">
           <button class="faq-question">
