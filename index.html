@@ -3,35 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onda Studio — Experience Design</title>
+  <title>Onda Studio — Experience Design per luoghi straordinari</title>
   <meta name="description" content="Trasformiamo luoghi in esperienze che le persone ricordano. Strategy, experience design e revenue logic per operatori legati ai luoghi.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    /* ─── DESIGN TOKENS ─────────────────────────────────────── */
+    /* ─── TOKENS ──────────────────────────────────── */
     :root {
-      --bg:          #F7F7F5;
-      --blue-deep:   #0F2A44;
-      --blue-soft:   #3E6C8F;
-      --green-deep:  #2F5D50;
-      --green-soft:  #6F8F7B;
-      --sand:        #D8D1C7;
-      --carbon:      #1C1C1A;
-
-      --f-display: 'Cormorant Garamond', serif;
-      --f-body:    'Inter', sans-serif;
-
-      --pad: clamp(24px, 5vw, 80px);
-      --max: 1320px;
+      --bg:         #F7F7F5;
+      --blue-deep:  #0F2A44;
+      --blue-soft:  #3E6C8F;
+      --green-deep: #2F5D50;
+      --green-soft: #6F8F7B;
+      --sand:       #D8D1C7;
+      --carbon:     #1C1C1A;
+      --white:      #FFFFFF;
+      --f-display:  'Cormorant Garamond', serif;
+      --f-body:     'Inter', sans-serif;
+      --pad:        clamp(24px, 5vw, 80px);
+      --max:        1280px;
+      --sec:        clamp(80px, 10vw, 140px);
     }
 
-    /* ─── RESET ─────────────────────────────────────────────── */
+    /* ─── RESET ───────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -42,924 +41,777 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
-    /* Grain overlay */
     body::after {
       content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.025;
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9999;
+      opacity: 0.022;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
     }
 
-    /* ─── UTILITY ────────────────────────────────────────────── */
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 var(--pad);
+    /* ─── UTILITY ──────────────────────────────────── */
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+    .sec  { padding: var(--sec) 0; }
+    .gsap-up { opacity: 0; transform: translateY(30px); }
+
+    /* ─── LABELS ──────────────────────────────────── */
+    .label {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--green-deep); margin-bottom: 28px;
     }
-
-    .gsap-up { opacity: 0; transform: translateY(28px); }
-
-    /* ─── NAV ────────────────────────────────────────────────── */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px var(--pad);
-      transition: padding 0.4s ease;
+    .label::before {
+      content: ''; display: block;
+      width: 36px; height: 1px;
+      background: var(--green-deep); flex-shrink: 0;
     }
+    .label--light { color: var(--green-soft); }
+    .label--light::before { background: var(--green-soft); }
+    .label--sand { color: var(--sand); opacity: .6; }
+    .label--sand::before { background: var(--sand); opacity: .6; }
 
-    .nav::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(247,247,245,0.96) 60%, transparent);
-      z-index: -1;
-      transition: opacity 0.4s;
-    }
-
-    .nav-logo {
+    /* ─── HEADINGS ────────────────────────────────── */
+    .h-display {
       font-family: var(--f-display);
-      font-size: 20px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-weight: 400; line-height: 1.05;
       color: var(--blue-deep);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-size: clamp(44px, 5.5vw, 76px);
+    }
+    .h-display em { font-style: italic; color: var(--blue-soft); }
+    .h-display--light { color: var(--bg); }
+    .h-display--light em { color: var(--sand); }
+
+    .h-section {
+      font-family: var(--f-display);
+      font-weight: 400; line-height: 1.1;
+      color: var(--blue-deep);
+      font-size: clamp(34px, 4vw, 54px);
     }
 
-    .nav-logo-dot {
-      width: 6px; height: 6px;
-      background: var(--green-deep);
-      border-radius: 50%;
-      display: inline-block;
-      margin-bottom: 2px;
-    }
+    .body-lg { font-size: 18px; line-height: 1.8; opacity: .65; }
+    .body-md { font-size: 16px; line-height: 1.75; opacity: .65; }
+    .body-sm { font-size: 14px; line-height: 1.75; opacity: .6; }
 
-    .nav-cta {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--blue-deep);
-      text-decoration: none;
-      border: 1px solid rgba(15,42,68,0.3);
-      padding: 10px 24px;
+    /* ─── BUTTONS ─────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--f-body); font-size: 13px;
+      font-weight: 500; letter-spacing: .04em;
+      text-decoration: none; transition: all .3s ease;
       border-radius: 100px;
-      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .btn svg { transition: transform .3s; }
+    .btn:hover svg { transform: translateX(3px); }
+
+    .btn--dark {
+      background: var(--blue-deep); color: var(--bg);
+      padding: 15px 34px;
+    }
+    .btn--dark:hover { background: var(--carbon); transform: translateY(-1px); }
+
+    .btn--light {
+      background: var(--bg); color: var(--carbon);
+      padding: 15px 34px;
+    }
+    .btn--light:hover { background: var(--sand); transform: translateY(-1px); }
+
+    .btn--outline {
+      border: 1px solid rgba(15,42,68,.25);
+      color: var(--blue-deep); padding: 13px 28px;
+    }
+    .btn--outline:hover { background: var(--blue-deep); color: var(--bg); border-color: var(--blue-deep); }
+
+    .btn--ghost { color: var(--blue-deep); opacity: .5; font-size: 13px; }
+    .btn--ghost:hover { opacity: 1; }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px var(--pad);
+      transition: padding .4s ease, background .4s ease;
+    }
+    .nav::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(to bottom, rgba(247,247,245,.97) 60%, transparent);
+    }
+    .nav-logo {
+      font-family: var(--f-display); font-size: 20px;
+      font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--blue-deep); text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-logo span {
+      width: 6px; height: 6px; background: var(--green-deep);
+      border-radius: 50%; display: inline-block; margin-bottom: 2px;
     }
 
-    .nav-cta:hover {
-      background: var(--blue-deep);
-      color: var(--bg);
-      border-color: var(--blue-deep);
-    }
-
-    /* ─── HERO ───────────────────────────────────────────────── */
+    /* ─── HERO ────────────────────────────────────── */
     .hero {
       min-height: 100svh;
-      display: grid;
-      grid-template-columns: 55% 45%;
+      display: grid; grid-template-columns: 55% 45%;
       align-items: center;
-      padding-top: 130px;
-      padding-bottom: 80px;
-      position: relative;
-      overflow: hidden;
+      padding-top: 130px; padding-bottom: 80px;
+      position: relative; overflow: hidden;
     }
-
-    /* Radial glow backgrounds */
     .hero::before {
-      content: '';
-      position: absolute;
-      width: 700px; height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(15,42,68,0.07) 0%, transparent 65%);
-      top: -180px; right: -120px;
-      pointer-events: none;
+      content: ''; position: absolute;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(15,42,68,.07) 0%, transparent 65%);
+      top: -180px; right: -120px; pointer-events: none;
     }
-
     .hero::after {
-      content: '';
-      position: absolute;
-      width: 400px; height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(47,93,80,0.06) 0%, transparent 65%);
-      bottom: 40px; left: 8%;
-      pointer-events: none;
+      content: ''; position: absolute;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(47,93,80,.055) 0%, transparent 65%);
+      bottom: 40px; left: 8%; pointer-events: none;
     }
-
-    .hero-content {
-      padding-left: var(--pad);
-      padding-right: 48px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green-deep);
-      margin-bottom: 36px;
-    }
-
-    .eyebrow::before {
-      content: '';
-      display: block;
-      width: 36px; height: 1px;
-      background: var(--green-deep);
-      flex-shrink: 0;
-    }
-
+    .hero-content { padding-left: var(--pad); padding-right: 48px; position: relative; z-index: 1; }
     .hero-title {
       font-family: var(--f-display);
-      font-size: clamp(52px, 6.5vw, 94px);
-      font-weight: 400;
-      line-height: 1.04;
-      color: var(--blue-deep);
-      margin-bottom: 36px;
-      letter-spacing: -0.01em;
+      font-size: clamp(54px, 6.5vw, 96px);
+      font-weight: 400; line-height: 1.04;
+      color: var(--blue-deep); margin-bottom: 36px;
+      letter-spacing: -.01em;
     }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--blue-soft);
-    }
-
+    .hero-title em { font-style: italic; color: var(--blue-soft); }
     .hero-sub {
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1.75;
-      color: var(--carbon);
-      opacity: 0.65;
-      max-width: 440px;
-      margin-bottom: 52px;
+      font-size: 18px; font-weight: 300; line-height: 1.75;
+      color: var(--carbon); opacity: .65;
+      max-width: 440px; margin-bottom: 52px;
     }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--f-body);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn-solid {
-      background: var(--blue-deep);
-      color: var(--bg);
-      padding: 14px 32px;
-      border-radius: 100px;
-    }
-
-    .btn-solid:hover {
-      background: var(--carbon);
-      transform: translateY(-1px);
-    }
-
-    .btn-solid svg { transition: transform 0.3s; }
-    .btn-solid:hover svg { transform: translateX(3px); }
-
-    .btn-ghost {
-      color: var(--blue-deep);
-      opacity: 0.55;
-      font-size: 13px;
-    }
-
-    .btn-ghost:hover { opacity: 1; }
-
-    /* Hero SVG visual */
+    .hero-actions { display: flex; align-items: center; gap: 32px; }
     .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-right: var(--pad);
-      position: relative;
-      z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding-right: var(--pad); position: relative; z-index: 1;
     }
+    .hero-svg-wrap { width: min(440px, 90%); aspect-ratio: 1; }
 
-    .hero-svg-wrap {
-      width: min(440px, 90%);
-      aspect-ratio: 1;
-    }
-
-    /* ─── MARQUEE ─────────────────────────────────────────────── */
+    /* ─── MARQUEE ─────────────────────────────────── */
     .marquee-bar {
-      border-top: 1px solid rgba(15,42,68,0.08);
-      border-bottom: 1px solid rgba(15,42,68,0.08);
-      padding: 18px 0;
-      overflow: hidden;
-      background: rgba(15,42,68,0.015);
+      border-top: 1px solid rgba(15,42,68,.08);
+      border-bottom: 1px solid rgba(15,42,68,.08);
+      padding: 18px 0; overflow: hidden;
+      background: rgba(15,42,68,.015);
     }
-
     .marquee-track {
-      display: flex;
-      gap: 0;
+      display: flex; width: max-content;
       animation: marquee 25s linear infinite;
-      width: max-content;
     }
-
     .marquee-item {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      padding: 0 40px;
+      display: flex; align-items: center; gap: 40px; padding: 0 40px;
+      font-family: var(--f-display); font-size: 15px; font-style: italic;
+      color: var(--blue-deep); opacity: .4; white-space: nowrap;
+    }
+    .msep { width: 4px; height: 4px; background: var(--green-deep); border-radius: 50%; opacity: .5; flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── PROBLEM ─────────────────────────────────── */
+    .problem { background: var(--blue-deep); }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; border-radius: 16px; overflow: hidden;
+      background: rgba(247,247,245,.08); margin-top: 64px;
+    }
+    .problem-cell {
+      background: var(--blue-deep); padding: 48px 44px;
+      transition: background .4s;
+    }
+    .problem-cell:hover { background: rgba(62,108,143,.18); }
+    .problem-cell strong {
+      display: block; font-weight: 500; font-size: 16px;
+      color: var(--bg); margin-bottom: 12px;
+    }
+    .problem-cell p { font-size: 15px; line-height: 1.75; color: var(--bg); opacity: .55; }
+
+    /* ─── INSIGHT ─────────────────────────────────── */
+    .insight { position: relative; overflow: hidden; }
+    .insight::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(47,93,80,.06) 0%, transparent 70%);
+      top: -100px; right: -60px; pointer-events: none;
+    }
+    .insight-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 100px; align-items: center;
+    }
+    .insight-quote {
       font-family: var(--f-display);
-      font-size: 15px;
-      font-style: italic;
-      color: var(--blue-deep);
-      opacity: 0.45;
-      white-space: nowrap;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 400; font-style: italic;
+      line-height: 1.25; color: var(--blue-deep);
     }
+    .insight-quote em { color: var(--green-deep); font-style: normal; }
+    .insight-points { display: flex; flex-direction: column; gap: 32px; }
+    .insight-point { border-left: 2px solid rgba(15,42,68,.12); padding-left: 24px; }
+    .insight-point strong { display: block; font-weight: 500; font-size: 15px; margin-bottom: 6px; color: var(--blue-deep); }
+    .insight-point p { font-size: 14px; line-height: 1.7; opacity: .6; }
 
-    .marquee-sep {
-      width: 4px; height: 4px;
-      background: var(--green-deep);
-      border-radius: 50%;
-      opacity: 0.5;
-      flex-shrink: 0;
+    /* ─── VISION ──────────────────────────────────── */
+    .vision { background: var(--carbon); position: relative; overflow: hidden; }
+    .vision::before {
+      content: ''; position: absolute;
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(62,108,143,.15) 0%, transparent 65%);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      pointer-events: none;
     }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    .vision .wrap { position: relative; z-index: 1; }
+    .vision-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .vision-statements { display: flex; flex-direction: column; gap: 40px; margin-top: 48px; }
+    .vision-statement { border-top: 1px solid rgba(247,247,245,.1); padding-top: 28px; }
+    .vision-statement p { font-size: 16px; line-height: 1.8; color: var(--bg); opacity: .6; }
+    .vision-statement strong { display: block; font-family: var(--f-display); font-size: 20px; font-weight: 500; color: var(--bg); margin-bottom: 8px; }
+    .vision-data { background: rgba(247,247,245,.04); border: 1px solid rgba(247,247,245,.08); border-radius: 20px; padding: 40px; margin-top: 48px; }
+    .vision-stat { margin-bottom: 0; padding: 28px 0; border-bottom: 1px solid rgba(247,247,245,.08); }
+    .vision-stat:first-child { padding-top: 0; }
+    .vision-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .vision-stat-num {
+      font-family: var(--f-display); font-size: 52px; font-weight: 300;
+      color: var(--bg); line-height: 1;
     }
+    .vision-stat-num span { font-size: 22px; opacity: .5; }
+    .vision-stat-label { font-size: 13px; color: var(--bg); opacity: .45; margin-top: 6px; line-height: 1.5; }
 
-    /* ─── SECTIONS BASE ──────────────────────────────────────── */
-    .section { padding: clamp(90px, 11vw, 150px) 0; }
-
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green-deep);
-      margin-bottom: 28px;
+    /* ─── OPPORTUNITY ─────────────────────────────── */
+    .opportunity { position: relative; }
+    .opportunity-intro { max-width: 680px; margin-bottom: 72px; }
+    .opportunity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .opp-card {
+      background: rgba(15,42,68,.03); padding: 52px 40px;
+      transition: background .35s;
     }
-
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 36px; height: 1px;
-      background: var(--green-deep);
-      flex-shrink: 0;
+    .opp-card:first-child { border-radius: 20px 0 0 20px; }
+    .opp-card:last-child  { border-radius: 0 20px 20px 0; }
+    .opp-card:hover { background: rgba(15,42,68,.07); }
+    .opp-num {
+      font-family: var(--f-display); font-size: 13px;
+      font-style: italic; color: var(--blue-soft); opacity: .7; margin-bottom: 28px;
     }
-
-    .section-title {
-      font-family: var(--f-display);
-      font-size: clamp(38px, 4.5vw, 62px);
-      font-weight: 400;
-      line-height: 1.08;
-      color: var(--blue-deep);
+    .opp-title {
+      font-family: var(--f-display); font-size: 26px;
+      font-weight: 500; color: var(--blue-deep);
+      margin-bottom: 14px; line-height: 1.2;
     }
+    .opp-text { font-size: 14px; line-height: 1.75; opacity: .6; }
 
-    /* ─── PROBLEMA ───────────────────────────────────────────── */
-    .problema {
-      background: var(--blue-deep);
-      color: var(--bg);
-    }
-
-    .problema .section-label { color: var(--green-soft); }
-    .problema .section-label::before { background: var(--green-soft); }
-
-    .problema-title {
-      font-family: var(--f-display);
-      font-size: clamp(42px, 5.5vw, 76px);
-      font-weight: 400;
-      line-height: 1.07;
-      color: var(--bg);
-      margin-bottom: 64px;
-      max-width: 820px;
-    }
-
-    .problema-title em {
-      font-style: italic;
-      color: var(--sand);
-    }
-
-    .problema-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: rgba(247,247,245,0.08);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .problema-cell {
-      background: rgba(15,42,68,1);
-      padding: 48px 44px;
-      transition: background 0.4s;
-    }
-
-    .problema-cell:hover { background: rgba(62,108,143,0.15); }
-
-    .problema-cell strong {
-      display: block;
-      font-weight: 500;
-      font-size: 16px;
-      margin-bottom: 12px;
-      color: var(--bg);
-    }
-
-    .problema-cell p {
-      font-size: 15px;
-      line-height: 1.75;
-      opacity: 0.6;
-    }
-
-    /* ─── APPROCCIO ──────────────────────────────────────────── */
-    .approccio-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: end;
-      margin-bottom: 72px;
-    }
-
-    .approccio-desc {
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--carbon);
-      opacity: 0.6;
-      max-width: 380px;
-      align-self: end;
-    }
-
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-    }
-
+    /* ─── APPROCCIO ───────────────────────────────── */
+    .approccio { background: var(--blue-deep); }
+    .approccio-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 72px; }
+    .approccio-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
     .pillar {
-      background: rgba(15,42,68,0.03);
-      padding: 52px 40px;
-      transition: background 0.35s;
+      background: rgba(247,247,245,.04); padding: 48px 36px;
+      transition: background .35s;
     }
-
-    .pillar:first-child { border-radius: 20px 0 0 20px; }
-    .pillar:last-child  { border-radius: 0 20px 20px 0; }
-    .pillar:hover       { background: rgba(15,42,68,0.07); }
-
+    .pillar:first-child { border-radius: 16px 0 0 16px; }
+    .pillar:last-child  { border-radius: 0 16px 16px 0; }
+    .pillar:hover { background: rgba(247,247,245,.08); }
     .pillar-num {
-      font-family: var(--f-display);
-      font-size: 13px;
-      font-style: italic;
-      color: var(--blue-soft);
-      opacity: 0.65;
-      margin-bottom: 36px;
+      font-family: var(--f-display); font-size: 13px;
+      font-style: italic; color: var(--sand); opacity: .5; margin-bottom: 32px;
     }
-
     .pillar-name {
-      font-family: var(--f-display);
-      font-size: 30px;
-      font-weight: 500;
-      color: var(--blue-deep);
-      margin-bottom: 16px;
-      line-height: 1.15;
+      font-family: var(--f-display); font-size: 28px;
+      font-weight: 500; color: var(--bg);
+      margin-bottom: 14px; line-height: 1.2;
     }
+    .pillar-text { font-size: 14px; line-height: 1.75; color: var(--bg); opacity: .5; }
 
-    .pillar-text {
-      font-size: 14px;
-      line-height: 1.75;
-      color: var(--carbon);
-      opacity: 0.55;
+    /* ─── COSA CAMBIA + RISULTATI ─────────────────── */
+    .trasformazioni { position: relative; }
+    .trasformazioni::before {
+      content: ''; position: absolute;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(47,93,80,.055) 0%, transparent 70%);
+      bottom: -80px; right: -60px; pointer-events: none;
     }
+    .trasf-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .trasf-examples { display: flex; flex-direction: column; gap: 2px; margin-top: 48px; }
+    .trasf-row {
+      display: grid; grid-template-columns: 1fr 40px 1fr;
+      align-items: center; background: rgba(15,42,68,.03);
+      padding: 28px 32px; border-radius: 4px;
+      transition: background .3s;
+    }
+    .trasf-row:first-child { border-radius: 16px 16px 4px 4px; }
+    .trasf-row:last-child  { border-radius: 4px 4px 16px 16px; }
+    .trasf-row:hover { background: rgba(15,42,68,.07); }
+    .trasf-from { font-size: 14px; opacity: .55; font-style: italic; }
+    .trasf-arrow { text-align: center; color: var(--green-deep); font-size: 18px; opacity: .6; }
+    .trasf-to { font-size: 14px; font-weight: 500; color: var(--blue-deep); }
+    .risultati-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+    .risultato {
+      background: var(--white); border: 1px solid rgba(15,42,68,.08);
+      border-radius: 14px; padding: 28px 28px 24px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .risultato:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(15,42,68,.08); }
+    .risultato-icon { font-size: 20px; margin-bottom: 14px; }
+    .risultato strong { display: block; font-weight: 500; font-size: 14px; color: var(--blue-deep); margin-bottom: 6px; }
+    .risultato p { font-size: 13px; opacity: .55; line-height: 1.6; }
 
-    /* ─── OFFERTA ────────────────────────────────────────────── */
-    .offerta { position: relative; overflow: hidden; }
+    /* ─── PER CHI È / NON È ───────────────────────── */
+    .perchi { background: var(--bg); }
+    .perchi-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .perchi-col { border-radius: 24px; padding: 52px 48px; }
+    .perchi-col--si { background: var(--blue-deep); }
+    .perchi-col--no { background: rgba(15,42,68,.05); border: 1px solid rgba(15,42,68,.12); }
+    .perchi-title {
+      font-family: var(--f-display); font-size: 32px;
+      font-weight: 500; margin-bottom: 36px; line-height: 1.2;
+    }
+    .perchi-col--si .perchi-title { color: var(--bg); }
+    .perchi-col--no .perchi-title { color: var(--blue-deep); }
+    .perchi-list { display: flex; flex-direction: column; gap: 18px; }
+    .perchi-item { display: flex; align-items: flex-start; gap: 14px; }
+    .perchi-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 7px;
+    }
+    .perchi-col--si .perchi-dot { background: var(--green-soft); }
+    .perchi-col--no .perchi-dot { background: rgba(15,42,68,.25); }
+    .perchi-item p { font-size: 15px; line-height: 1.6; }
+    .perchi-col--si .perchi-item p { color: var(--bg); opacity: .7; }
+    .perchi-col--no .perchi-item p { opacity: .55; }
 
-    .offerta::before {
-      content: '';
-      position: absolute;
-      width: 600px; height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(47,93,80,0.05) 0%, transparent 70%);
-      bottom: -150px; right: -80px;
+    /* ─── COME FUNZIONA ───────────────────────────── */
+    .comefunziona { background: var(--bg); }
+    .sessione-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+    .steps { display: flex; flex-direction: column; gap: 2px; }
+    .step {
+      display: grid; grid-template-columns: 56px 1fr;
+      align-items: start; padding: 28px 0 28px 0;
+      border-top: 1px solid rgba(15,42,68,.08);
+    }
+    .step-num {
+      font-family: var(--f-display); font-size: 13px;
+      font-style: italic; color: var(--blue-soft); opacity: .7; padding-top: 3px;
+    }
+    .step-body strong { font-weight: 500; font-size: 15px; color: var(--blue-deep); display: block; margin-bottom: 6px; }
+    .step-body p { font-size: 14px; opacity: .55; line-height: 1.7; }
+    .sessione-highlight {
+      background: var(--blue-deep); border-radius: 24px;
+      padding: 52px 48px; position: relative; overflow: hidden;
+    }
+    .sessione-highlight::before {
+      content: ''; position: absolute;
+      top: -40px; right: -40px; width: 160px; height: 160px;
+      border-radius: 50%; background: var(--green-deep); opacity: .15;
+    }
+    .sessione-highlight blockquote {
+      font-family: var(--f-display); font-size: clamp(22px, 2.5vw, 30px);
+      font-style: italic; font-weight: 400; color: var(--bg);
+      line-height: 1.4; margin-bottom: 32px; position: relative; z-index: 1;
+    }
+    .sessione-price {
+      font-family: var(--f-display); font-size: 52px;
+      font-weight: 300; color: var(--bg); line-height: 1;
+      position: relative; z-index: 1;
+    }
+    .sessione-price span { font-size: 18px; opacity: .45; font-family: var(--f-body); }
+    .sessione-cta { margin-top: 40px; position: relative; z-index: 1; padding-top: 32px; border-top: 1px solid rgba(247,247,245,.12); }
+
+    /* ─── CREDIBILITÀ ─────────────────────────────── */
+    .credibilita { background: rgba(15,42,68,.02); }
+    .cred-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .cred-cases { display: flex; flex-direction: column; gap: 24px; margin-top: 48px; }
+    .case-card {
+      background: var(--white); border: 1px solid rgba(15,42,68,.08);
+      border-radius: 16px; padding: 32px 32px 28px;
+    }
+    .case-type {
+      font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--green-deep); background: rgba(47,93,80,.07);
+      padding: 5px 12px; border-radius: 100px; display: inline-block; margin-bottom: 16px;
+    }
+    .case-result {
+      font-family: var(--f-display); font-size: 22px;
+      font-weight: 500; color: var(--blue-deep);
+      margin-bottom: 10px; line-height: 1.2;
+    }
+    .case-desc { font-size: 13px; opacity: .55; line-height: 1.65; }
+    .cred-observations { display: flex; flex-direction: column; gap: 28px; }
+    .cred-obs { border-left: 2px solid rgba(15,42,68,.1); padding-left: 24px; }
+    .cred-obs strong { display: block; font-weight: 500; font-size: 15px; color: var(--blue-deep); margin-bottom: 6px; }
+    .cred-obs p { font-size: 14px; opacity: .6; line-height: 1.7; }
+    .cred-data { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .cred-stat {
+      background: var(--white); border: 1px solid rgba(15,42,68,.08);
+      border-radius: 14px; padding: 24px;
+    }
+    .cred-stat-num {
+      font-family: var(--f-display); font-size: 40px;
+      font-weight: 300; color: var(--blue-deep); line-height: 1;
+    }
+    .cred-stat-label { font-size: 12px; opacity: .5; margin-top: 6px; line-height: 1.5; }
+
+    /* ─── GARANZIA ────────────────────────────────── */
+    .garanzia { background: var(--bg); }
+    .garanzia-box {
+      background: var(--blue-deep); border-radius: 28px;
+      padding: clamp(48px, 6vw, 80px); display: grid;
+      grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .garanzia-box::before {
+      content: ''; position: absolute;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(62,108,143,.2) 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .garanzia-title {
+      font-family: var(--f-display); font-size: clamp(36px, 4vw, 54px);
+      font-weight: 400; color: var(--bg); line-height: 1.1; margin-bottom: 24px;
+    }
+    .garanzia-title em { font-style: italic; color: var(--sand); }
+    .garanzia-body { font-size: 16px; line-height: 1.8; color: var(--bg); opacity: .6; }
+    .garanzia-mechanic {
+      background: rgba(247,247,245,.06); border: 1px solid rgba(247,247,245,.1);
+      border-radius: 20px; padding: 40px; position: relative; z-index: 1;
+    }
+    .garanzia-mechanic-num {
+      font-family: var(--f-display); font-size: 64px;
+      font-weight: 300; color: var(--bg); line-height: 1; margin-bottom: 16px;
+    }
+    .garanzia-mechanic-num span { font-size: 24px; opacity: .4; font-family: var(--f-body); }
+    .garanzia-mechanic p { font-size: 15px; color: var(--bg); opacity: .6; line-height: 1.7; }
+    .garanzia-mechanic strong { color: var(--sand); opacity: 1; font-weight: 500; }
+
+    /* ─── FAQ ─────────────────────────────────────── */
+    .faq-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+    .faq-list { display: flex; flex-direction: column; gap: 2px; }
+    .faq-item { border-top: 1px solid rgba(15,42,68,.1); overflow: hidden; }
+    .faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0; text-align: left; gap: 16px;
+    }
+    .faq-question span {
+      font-size: 16px; font-weight: 400; color: var(--blue-deep); line-height: 1.4;
+    }
+    .faq-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1px solid rgba(15,42,68,.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all .3s; font-size: 16px; color: var(--blue-deep);
+    }
+    .faq-item.open .faq-icon { background: var(--blue-deep); color: var(--bg); border-color: var(--blue-deep); transform: rotate(45deg); }
+    .faq-answer {
+      font-size: 15px; line-height: 1.75; opacity: .6;
+      max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .4s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 24px; }
+
+    /* ─── CTA DOPPIA ──────────────────────────────── */
+    .cta-top {
+      background: var(--carbon); text-align: center;
+      padding: clamp(100px, 13vw, 180px) 0;
+      position: relative; overflow: hidden;
+    }
+    .cta-top::before {
+      content: ''; position: absolute;
+      width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(62,108,143,.18) 0%, transparent 65%);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
       pointer-events: none;
     }
-
-    .offerta-head {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: end;
-      margin-bottom: 64px;
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid rgba(15,42,68,0.1);
-      border-radius: 20px;
-      padding: 44px 36px;
-      background: #fff;
-      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blue-deep), var(--blue-soft));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 24px 52px rgba(15,42,68,0.09);
-      border-color: transparent;
-    }
-
-    .card:hover::after { transform: scaleX(1); }
-
-    .card--featured {
-      background: var(--blue-deep);
-      border-color: transparent;
-      color: var(--bg);
-    }
-
-    .card--featured::after {
-      background: linear-gradient(90deg, var(--green-deep), var(--green-soft));
-    }
-
-    .card--featured:hover {
-      box-shadow: 0 24px 52px rgba(15,42,68,0.22);
-    }
-
-    .card-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 100px;
-      background: rgba(47,93,80,0.08);
-      color: var(--green-deep);
-      margin-bottom: 28px;
-    }
-
-    .card--featured .card-tag {
-      background: rgba(111,143,123,0.18);
-      color: var(--green-soft);
-    }
-
-    .card-name {
-      font-family: var(--f-display);
-      font-size: 26px;
-      font-weight: 500;
-      color: var(--blue-deep);
-      margin-bottom: 14px;
-      line-height: 1.2;
-    }
-
-    .card--featured .card-name { color: var(--bg); }
-
-    .card-desc {
-      font-size: 14px;
-      line-height: 1.75;
-      color: var(--carbon);
-      opacity: 0.55;
-      margin-bottom: 36px;
-    }
-
-    .card--featured .card-desc { color: var(--bg); opacity: 0.55; }
-
-    .card-price {
-      font-family: var(--f-display);
-      font-size: 38px;
-      font-weight: 400;
-      color: var(--blue-deep);
-      line-height: 1;
-    }
-
-    .card--featured .card-price { color: var(--bg); }
-
-    .card-price sub {
-      font-size: 14px;
-      font-family: var(--f-body);
-      font-weight: 300;
-      opacity: 0.45;
-      vertical-align: baseline;
-    }
-
-    /* ─── CHI SIAMO ──────────────────────────────────────────── */
-    .chi-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .chi-body {
-      font-size: 16px;
-      line-height: 1.85;
-      color: var(--carbon);
-      opacity: 0.65;
-      margin-bottom: 20px;
-    }
-
-    .chi-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 36px;
-    }
-
-    .tag {
-      font-size: 12px;
-      color: var(--blue-deep);
-      border: 1px solid rgba(15,42,68,0.18);
-      padding: 6px 16px;
-      border-radius: 100px;
-      opacity: 0.7;
-    }
-
-    .chi-quote-box {
-      background: var(--blue-deep);
-      border-radius: 24px;
-      padding: 52px 48px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .chi-quote-blob {
-      position: absolute;
-      top: -30px; right: -30px;
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: var(--green-deep);
-      opacity: 0.2;
-    }
-
-    .chi-quote-blob2 {
-      position: absolute;
-      bottom: -20px; left: 20px;
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: var(--blue-soft);
-      opacity: 0.15;
-    }
-
-    .chi-quote {
-      font-family: var(--f-display);
-      font-size: clamp(22px, 2.5vw, 32px);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--bg);
-      line-height: 1.4;
-      margin-bottom: 36px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .chi-cite {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sand);
-      opacity: 0.5;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ─── CTA FINALE ─────────────────────────────────────────── */
-    .cta-block {
-      background: var(--carbon);
-      text-align: center;
-      padding: clamp(110px, 14vw, 190px) 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-block::before {
-      content: '';
-      position: absolute;
-      width: 800px; height: 800px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(62,108,143,0.18) 0%, transparent 65%);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .cta-block .wrap { position: relative; z-index: 1; max-width: 760px; }
-
+    .cta-top .wrap { position: relative; z-index: 1; max-width: 760px; }
     .cta-label {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green-soft);
-      margin-bottom: 36px;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--green-soft); margin-bottom: 36px;
     }
-
     .cta-label::before, .cta-label::after {
-      content: '';
-      display: block;
-      width: 36px; height: 1px;
-      background: var(--green-soft);
+      content: ''; display: block; width: 36px; height: 1px; background: var(--green-soft);
     }
-
-    .cta-title {
-      font-family: var(--f-display);
-      font-size: clamp(48px, 6vw, 80px);
-      font-weight: 400;
-      line-height: 1.07;
-      color: var(--bg);
-      margin-bottom: 52px;
+    .cta-sub { font-size: 16px; color: var(--bg); opacity: .5; margin-top: 28px; line-height: 1.7; }
+    .cta-bottom {
+      background: var(--bg); padding: clamp(80px, 10vw, 130px) 0;
+      border-bottom: 1px solid rgba(15,42,68,.08);
     }
+    .cta-bottom-layout { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+    .cta-bottom-text .h-section { margin-bottom: 16px; }
+    .cta-bottom-action { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+    .cta-bottom-note { font-size: 13px; opacity: .45; text-align: right; max-width: 240px; line-height: 1.6; }
 
-    .cta-title em { font-style: italic; color: var(--sand); }
-
-    .btn-light {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--bg);
-      color: var(--carbon);
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      padding: 16px 40px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn-light:hover {
-      background: var(--sand);
-      transform: translateY(-2px);
-    }
-
-    .btn-light svg { transition: transform 0.3s; }
-    .btn-light:hover svg { transform: translateX(3px); }
-
-    /* ─── FOOTER ─────────────────────────────────────────────── */
+    /* ─── FOOTER ──────────────────────────────────── */
     .footer {
-      border-top: 1px solid rgba(15,42,68,0.08);
       padding: 36px var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
     .footer-logo {
-      font-family: var(--f-display);
-      font-size: 18px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue-deep);
+      font-family: var(--f-display); font-size: 18px;
+      font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-deep);
     }
+    .footer-copy { font-size: 12px; opacity: .35; }
+    .footer-links { display: flex; gap: 28px; list-style: none; }
+    .footer-links a { font-size: 12px; opacity: .45; text-decoration: none; color: var(--carbon); transition: opacity .3s; }
+    .footer-links a:hover { opacity: .9; }
 
-    .footer-copy {
-      font-size: 12px;
-      color: var(--carbon);
-      opacity: 0.35;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .footer-links a {
-      font-size: 12px;
-      color: var(--carbon);
-      opacity: 0.45;
-      text-decoration: none;
-      transition: opacity 0.3s;
-    }
-
-    .footer-links a:hover { opacity: 0.9; }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 960px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 110px;
-      }
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1000px) {
+      .hero { grid-template-columns: 1fr; padding-top: 110px; }
       .hero-visual { display: none; }
       .hero-content { padding-right: var(--pad); }
-
-      .approccio-head,
-      .offerta-head,
-      .chi-grid { grid-template-columns: 1fr; gap: 40px; }
-
-      .problema-grid,
-      .pillars,
-      .service-grid { grid-template-columns: 1fr; }
-
-      .pillar:first-child { border-radius: 20px 20px 0 0; }
-      .pillar:last-child  { border-radius: 0 0 20px 20px; }
-
-      .footer {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
+      .insight-layout, .vision-layout, .trasf-layout, .cred-layout,
+      .approccio-layout, .sessione-layout, .faq-layout,
+      .garanzia-box, .cta-bottom-layout { grid-template-columns: 1fr; gap: 48px; }
+      .perchi-layout { grid-template-columns: 1fr; }
+      .problem-grid, .approccio-pillars, .opportunity-grid,
+      .risultati-grid, .cred-data { grid-template-columns: 1fr; }
+      .pillar:first-child { border-radius: 16px 16px 0 0; }
+      .pillar:last-child  { border-radius: 0 0 16px 16px; }
+      .opp-card:first-child { border-radius: 20px 20px 0 0; }
+      .opp-card:last-child  { border-radius: 0 0 20px 20px; }
+      .cta-bottom-action { align-items: flex-start; }
+      .cta-bottom-note { text-align: left; }
+      .footer { flex-direction: column; gap: 16px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── NAV ──────────────────────────────────────────────────── -->
-<nav class="nav">
-  <a href="#" class="nav-logo">
-    Onda <span class="nav-logo-dot"></span>
-  </a>
-  <a href="#contatti" class="nav-cta">Prenota una sessione</a>
+<!-- ─── NAV ────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Onda <span></span></a>
+  <a href="#sessione" class="btn btn--outline">Prenota una sessione</a>
 </nav>
 
 
-<!-- ─── HERO ─────────────────────────────────────────────────── -->
+<!-- ─── 1. HERO ────────────────────────────────────── -->
 <section class="hero">
   <div class="hero-content">
-    <p class="eyebrow" id="h-eyebrow">Experience Design Studio</p>
+    <p class="label" id="h-label">Experience Design Studio</p>
     <h1 class="hero-title" id="h-title">
       Il tuo posto<br>
       è straordinario.<br>
       <em>Quasi nessuno<br>lo sa ancora.</em>
     </h1>
     <p class="hero-sub" id="h-sub">
-      Trasformiamo servizi in esperienze che le persone ricordano.
-      Non marketing. Non consulenza teorica.
-      Progettiamo esperienze come leva di crescita.
+      Aiutiamo operatori legati ai luoghi a trasformare servizi in esperienze che le persone ricordano — e che generano più valore, senza inseguire il volume.
     </p>
     <div class="hero-actions" id="h-actions">
-      <a href="#offerta" class="btn btn-solid">
-        Come lavoriamo
+      <a href="#sessione" class="btn btn--dark">
+        Scopri come
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
           <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <a href="#chi-siamo" class="btn btn-ghost">Chi siamo →</a>
+      <a href="#problem" class="btn btn--ghost">Inizia dall'inizio →</a>
     </div>
   </div>
-
   <div class="hero-visual" id="h-visual">
     <div class="hero-svg-wrap">
       <svg viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer atmosphere -->
         <circle cx="220" cy="220" r="200" fill="rgba(15,42,68,0.03)"/>
         <circle cx="220" cy="220" r="150" stroke="#0F2A44" stroke-width="0.5" opacity="0.06" stroke-dasharray="3 7"/>
         <circle cx="220" cy="220" r="100" stroke="#0F2A44" stroke-width="0.5" opacity="0.04" stroke-dasharray="2 5"/>
-
-        <!-- Wave lines — onda -->
-        <path d="M60 220 C100 178, 140 262, 180 220 C220 178, 260 262, 300 220 C340 178, 380 262, 420 220"
-              stroke="#0F2A44" stroke-width="1.5" opacity="0.14" fill="none" stroke-linecap="round"/>
-        <path d="M60 238 C100 196, 140 280, 180 238 C220 196, 260 280, 300 238 C340 196, 380 280, 420 238"
-              stroke="#0F2A44" stroke-width="1.2" opacity="0.1" fill="none" stroke-linecap="round"/>
-        <path d="M60 256 C100 214, 140 298, 180 256 C220 214, 260 298, 300 256 C340 214, 380 298, 420 256"
-              stroke="#0F2A44" stroke-width="0.8" opacity="0.07" fill="none" stroke-linecap="round"/>
-        <path d="M60 202 C100 160, 140 244, 180 202 C220 160, 260 244, 300 202 C340 160, 380 244, 420 202"
-              stroke="#0F2A44" stroke-width="1" opacity="0.08" fill="none" stroke-linecap="round"/>
-        <path d="M60 184 C100 142, 140 226, 180 184 C220 142, 260 226, 300 184 C340 142, 380 226, 420 184"
-              stroke="#3E6C8F" stroke-width="0.6" opacity="0.07" fill="none" stroke-linecap="round"/>
-        <path d="M60 166 C100 124, 140 208, 180 166 C220 124, 260 208, 300 166 C340 124, 380 208, 420 166"
-              stroke="#3E6C8F" stroke-width="0.4" opacity="0.05" fill="none" stroke-linecap="round"/>
-
-        <!-- Center -->
+        <path d="M60 220 C100 178,140 262,180 220 C220 178,260 262,300 220 C340 178,380 262,420 220" stroke="#0F2A44" stroke-width="1.5" opacity="0.14" fill="none" stroke-linecap="round"/>
+        <path d="M60 238 C100 196,140 280,180 238 C220 196,260 280,300 238 C340 196,380 280,420 238" stroke="#0F2A44" stroke-width="1.2" opacity="0.1" fill="none" stroke-linecap="round"/>
+        <path d="M60 256 C100 214,140 298,180 256 C220 214,260 298,300 256 C340 214,380 298,420 256" stroke="#0F2A44" stroke-width="0.8" opacity="0.07" fill="none" stroke-linecap="round"/>
+        <path d="M60 202 C100 160,140 244,180 202 C220 160,260 244,300 202 C340 160,380 244,420 202" stroke="#0F2A44" stroke-width="1" opacity="0.08" fill="none" stroke-linecap="round"/>
+        <path d="M60 184 C100 142,140 226,180 184 C220 142,260 226,300 184 C340 142,380 226,420 184" stroke="#3E6C8F" stroke-width="0.6" opacity="0.07" fill="none" stroke-linecap="round"/>
         <circle cx="220" cy="220" r="10" fill="rgba(47,93,80,0.15)"/>
         <circle cx="220" cy="220" r="5" fill="#2F5D50" opacity="0.4"/>
         <circle cx="220" cy="220" r="2" fill="#2F5D50" opacity="0.7"/>
-
-        <!-- Accent dots -->
         <circle cx="88" cy="168" r="3.5" fill="#6F8F7B" opacity="0.35"/>
         <circle cx="360" cy="288" r="3.5" fill="#6F8F7B" opacity="0.35"/>
         <circle cx="148" cy="320" r="2.5" fill="#3E6C8F" opacity="0.3"/>
         <circle cx="316" cy="128" r="2.5" fill="#3E6C8F" opacity="0.3"/>
-        <circle cx="60" cy="240" r="2" fill="#D8D1C7" opacity="0.5"/>
-        <circle cx="400" cy="180" r="2" fill="#D8D1C7" opacity="0.5"/>
-
-        <!-- Small cross marks -->
-        <line x1="380" y1="138" x2="388" y2="146" stroke="#0F2A44" stroke-width="0.7" opacity="0.15"/>
-        <line x1="388" y1="138" x2="380" y2="146" stroke="#0F2A44" stroke-width="0.7" opacity="0.15"/>
-        <line x1="72" y1="296" x2="80" y2="304" stroke="#0F2A44" stroke-width="0.7" opacity="0.12"/>
-        <line x1="80" y1="296" x2="72" y2="304" stroke="#0F2A44" stroke-width="0.7" opacity="0.12"/>
       </svg>
     </div>
   </div>
 </section>
 
 
-<!-- ─── MARQUEE ──────────────────────────────────────────────── -->
+<!-- ─── MARQUEE ─────────────────────────────────────── -->
 <div class="marquee-bar">
-  <div class="marquee-track" id="marquee">
-    <div class="marquee-item">hospitality boutique <span class="marquee-sep"></span></div>
-    <div class="marquee-item">surf school <span class="marquee-sep"></span></div>
-    <div class="marquee-item">sailing school <span class="marquee-sep"></span></div>
-    <div class="marquee-item">diving center <span class="marquee-sep"></span></div>
-    <div class="marquee-item">outdoor guide <span class="marquee-sep"></span></div>
-    <div class="marquee-item">retreat <span class="marquee-sep"></span></div>
-    <div class="marquee-item">agriturismo <span class="marquee-sep"></span></div>
-    <div class="marquee-item">esperienze culturali <span class="marquee-sep"></span></div>
-    <div class="marquee-item">workshop locali <span class="marquee-sep"></span></div>
-    <!-- duplicate for seamless loop -->
-    <div class="marquee-item">hospitality boutique <span class="marquee-sep"></span></div>
-    <div class="marquee-item">surf school <span class="marquee-sep"></span></div>
-    <div class="marquee-item">sailing school <span class="marquee-sep"></span></div>
-    <div class="marquee-item">diving center <span class="marquee-sep"></span></div>
-    <div class="marquee-item">outdoor guide <span class="marquee-sep"></span></div>
-    <div class="marquee-item">retreat <span class="marquee-sep"></span></div>
-    <div class="marquee-item">agriturismo <span class="marquee-sep"></span></div>
-    <div class="marquee-item">esperienze culturali <span class="marquee-sep"></span></div>
-    <div class="marquee-item">workshop locali <span class="marquee-sep"></span></div>
+  <div class="marquee-track">
+    <div class="marquee-item">hospitality boutique <span class="msep"></span></div>
+    <div class="marquee-item">surf school <span class="msep"></span></div>
+    <div class="marquee-item">sailing school <span class="msep"></span></div>
+    <div class="marquee-item">diving center <span class="msep"></span></div>
+    <div class="marquee-item">outdoor guide <span class="msep"></span></div>
+    <div class="marquee-item">retreat <span class="msep"></span></div>
+    <div class="marquee-item">agriturismo <span class="msep"></span></div>
+    <div class="marquee-item">esperienze culturali <span class="msep"></span></div>
+    <div class="marquee-item">workshop locali <span class="msep"></span></div>
+    <div class="marquee-item">hospitality boutique <span class="msep"></span></div>
+    <div class="marquee-item">surf school <span class="msep"></span></div>
+    <div class="marquee-item">sailing school <span class="msep"></span></div>
+    <div class="marquee-item">diving center <span class="msep"></span></div>
+    <div class="marquee-item">outdoor guide <span class="msep"></span></div>
+    <div class="marquee-item">retreat <span class="msep"></span></div>
+    <div class="marquee-item">agriturismo <span class="msep"></span></div>
+    <div class="marquee-item">esperienze culturali <span class="msep"></span></div>
+    <div class="marquee-item">workshop locali <span class="msep"></span></div>
   </div>
 </div>
 
 
-<!-- ─── PROBLEMA ─────────────────────────────────────────────── -->
-<section class="section problema">
+<!-- ─── 2. PROBLEM ─────────────────────────────────── -->
+<section class="sec problem" id="problem">
   <div class="wrap">
-    <p class="section-label gsap-up">Il contesto</p>
-    <h2 class="problema-title gsap-up">
+    <p class="label label--light gsap-up">Il problema</p>
+    <h2 class="h-display h-display--light gsap-up">
       Molti luoghi hanno <em>potenziale.</em><br>
       Pochi lo progettano davvero.
     </h2>
-    <div class="problema-grid">
-      <div class="problema-cell gsap-up">
-        <strong>Il problema non è la stagione</strong>
-        <p>È il motivo per cui qualcuno dovrebbe sceglierti, tornare, e raccontarlo agli altri.</p>
+    <div class="problem-grid">
+      <div class="problem-cell gsap-up">
+        <strong>Il gap tra qualità reale e percezione</strong>
+        <p>Hai investito nel tuo posto, nell'accoglienza, nell'autenticità. Ma fuori — sulle piattaforme, nel passaparola, nei prezzi — non si vede. Il valore percepito è molto più basso di quello reale.</p>
       </div>
-      <div class="problema-cell gsap-up">
-        <strong>Le persone non cercano attività</strong>
-        <p>Cercano momenti che ricordano. La differenza tra un servizio e un'esperienza è progettuale.</p>
+      <div class="problem-cell gsap-up">
+        <strong>Esperienze non strutturate</strong>
+        <p>Quello che offri è spesso buono. Ma non è progettato. Non ha una sequenza, un nome, una logica di pricing. Rimane un servizio quando potrebbe diventare un'esperienza distintiva.</p>
       </div>
-      <div class="problema-cell gsap-up">
-        <strong>Il volume non è la risposta</strong>
-        <p>Più clienti con meno qualità percepita non è crescita. È fatica ripetuta.</p>
+      <div class="problem-cell gsap-up">
+        <strong>Potenziale non espresso</strong>
+        <p>Il tuo posto ha una storia, un contesto, delle connessioni locali. Tutto questo potrebbe generare valore — ma rimane sullo sfondo, non viene mai portato in primo piano e valorizzato.</p>
       </div>
-      <div class="problema-cell gsap-up">
-        <strong>L'identità genera valore</strong>
-        <p>Un posto con carattere autentico attrae clienti migliori, disposti a pagare di più.</p>
+      <div class="problem-cell gsap-up">
+        <strong>Il volume come unica leva</strong>
+        <p>Quando il valore percepito è basso, l'unico modo per crescere sembra essere più clienti, più stagioni, più piattaforme. È una trappola. Aumenta la fatica, non la qualità.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ─── APPROCCIO ────────────────────────────────────────────── -->
-<section class="section">
+<!-- ─── 3. INSIGHT ──────────────────────────────────── -->
+<section class="sec insight">
   <div class="wrap">
-    <div class="approccio-head">
+    <div class="insight-layout">
       <div>
-        <p class="section-label gsap-up">Come lavoriamo</p>
-        <h2 class="section-title gsap-up">
+        <p class="label gsap-up">Il vero limite</p>
+        <p class="insight-quote gsap-up">
+          "Il problema non è<br>il marketing.<br>
+          È come <em>l'esperienza</em><br>
+          è progettata."
+        </p>
+      </div>
+      <div class="insight-points">
+        <p class="body-lg gsap-up" style="margin-bottom: 16px;">
+          Più visibilità su un'esperienza mediocre porta più delusioni. Quello che cambia davvero il business è a monte.
+        </p>
+        <div class="insight-point gsap-up">
+          <strong>Prima l'esperienza, poi la comunicazione</strong>
+          <p>Quando l'esperienza è progettata bene, si racconta da sola. Il passaparola diventa il canale principale.</p>
+        </div>
+        <div class="insight-point gsap-up">
+          <strong>Il prezzo segue il valore percepito</strong>
+          <p>Non puoi alzare i prezzi senza alzare prima la qualità percepita. L'ordine conta.</p>
+        </div>
+        <div class="insight-point gsap-up">
+          <strong>La distintività non si comunica, si progetta</strong>
+          <p>Non basta dire che sei diverso. Deve sentirsi in ogni punto di contatto — dall'offerta al momento vissuto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 4. VISION ───────────────────────────────────── -->
+<section class="sec vision">
+  <div class="wrap">
+    <div class="vision-layout">
+      <div>
+        <p class="label label--light gsap-up">La visione</p>
+        <h2 class="h-display h-display--light gsap-up">
+          Un turismo dove<br>i luoghi vengono<br>
+          <em>vissuti,</em><br>non consumati.
+        </h2>
+        <div class="vision-statements">
+          <div class="vision-statement gsap-up">
+            <strong>Esperienze come ecosistemi</strong>
+            <p>Non un singolo servizio, ma una rete di momenti connessi. Il surf lodge che collabora con il pescatore locale, il retreat che si intreccia con il produttore di vino. Valore distribuito, identità amplificata.</p>
+          </div>
+          <div class="vision-statement gsap-up">
+            <strong>Più significato, più valore</strong>
+            <p>I viaggiatori del futuro non cercano comfort standardizzato. Cercano connessione con il luogo, con le persone, con qualcosa di autentico. Chi progetta questo, vince.</p>
+          </div>
+          <div class="vision-statement gsap-up">
+            <strong>I piccoli operatori prosperano</strong>
+            <p>Non servono grandi numeri. Serve un'offerta che attrae le persone giuste, disposti a pagare il giusto prezzo per qualcosa di unico.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="vision-data gsap-up">
+          <div class="vision-stat">
+            <div class="vision-stat-num">45<span>%</span></div>
+            <p class="vision-stat-label">delle vendite nel travel premium entro il 2025 sarà guidata da Gen Z e Millennial — la generazione che sceglie esperienze autentiche e paga di più per averle.</p>
+          </div>
+          <div class="vision-stat">
+            <div class="vision-stat-num">$143<span>B</span></div>
+            <p class="vision-stat-label">il potere d'acquisto della Gen Z — un segmento che privilegia autenticità, contatto locale e sostenibilità verificabile rispetto al lusso standardizzato.</p>
+          </div>
+          <div class="vision-stat">
+            <div class="vision-stat-num">2030</div>
+            <p class="vision-stat-label">anno in cui le destinazioni "off the beaten path" vedranno la crescita più forte — esattamente dove operano i clienti di Onda. (Institute for Hospitality Management)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 5. OPPORTUNITY ──────────────────────────────── -->
+<section class="sec opportunity">
+  <div class="wrap">
+    <div class="opportunity-intro">
+      <p class="label gsap-up">L'opportunità</p>
+      <h2 class="h-display gsap-up">
+        Cosa diventa possibile<br>quando <em>l'esperienza è progettata.</em>
+      </h2>
+    </div>
+    <div class="opportunity-grid">
+      <div class="opp-card gsap-up">
+        <p class="opp-num">01</p>
+        <h3 class="opp-title">Più valore percepito</h3>
+        <p class="opp-text">Stessa struttura, stessa location, stessa qualità reale — ma un'esperienza progettata che giustifica prezzi più alti e attira clienti migliori. Non è magia, è design.</p>
+      </div>
+      <div class="opp-card gsap-up">
+        <p class="opp-num">02</p>
+        <h3 class="opp-title">Più distintività</h3>
+        <p class="opp-text">Smetti di competere sul prezzo. Quando la tua esperienza è unica e riconoscibile, il confronto con i competitor diventa irrilevante. Sei in un mercato diverso.</p>
+      </div>
+      <div class="opp-card gsap-up">
+        <p class="opp-num">03</p>
+        <h3 class="opp-title">Più sostenibilità</h3>
+        <p class="opp-text">Meno clienti, meglio selezionati, che pagano di più e tornano. Stagionalità allargata perché l'esperienza ha senso tutto l'anno. Crescita che non ti logora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 6. APPROCCIO ────────────────────────────────── -->
+<section class="sec approccio">
+  <div class="wrap">
+    <div class="approccio-layout">
+      <div>
+        <p class="label label--light gsap-up">L'approccio Onda</p>
+        <h2 class="h-display h-display--light gsap-up">
           Strategy.<br>Design.<br>Revenue logic.
         </h2>
       </div>
-      <p class="approccio-desc gsap-up">
-        Non separiamo questi tre elementi. Ogni decisione di design ha una logica economica.
-        Ogni scelta di posizionamento si riflette nell'esperienza vissuta.
-      </p>
+      <div>
+        <p class="body-lg gsap-up" style="color: var(--bg);">
+          Non separiamo questi tre elementi. Ogni decisione di design ha una logica economica. Ogni scelta di posizionamento si riflette nell'esperienza vissuta.
+        </p>
+        <p class="body-md gsap-up" style="color: var(--bg); margin-top: 20px;">
+          Operiamo come advisor esterni con uno sguardo fresco sul tuo business — il tipo di prospettiva che non riesci ad avere quando sei dentro ogni giorno. Portiamo osservazioni da mercati maturi dove l'experience economy funziona già: Portogallo, Canarie, Emirati, Sud-est asiatico.
+        </p>
+      </div>
     </div>
-
-    <div class="pillars">
+    <div class="approccio-pillars">
       <div class="pillar gsap-up">
         <p class="pillar-num">01</p>
         <h3 class="pillar-name">Strategy</h3>
@@ -980,82 +832,123 @@
 </section>
 
 
-<!-- ─── OFFERTA ──────────────────────────────────────────────── -->
-<section class="section offerta" id="offerta">
+<!-- ─── 7. COSA CAMBIA + RISULTATI ─────────────────── -->
+<section class="sec trasformazioni">
   <div class="wrap">
-    <div class="offerta-head">
+    <div class="trasf-layout">
       <div>
-        <p class="section-label gsap-up">L'offerta</p>
-        <h2 class="section-title gsap-up">
-          Inizia<br>da dove<br>ha senso.
-        </h2>
+        <p class="label gsap-up">Cosa cambia nel concreto</p>
+        <h2 class="h-section gsap-up" style="margin-bottom: 16px;">Da servizio<br>a ecosistema.</h2>
+        <p class="body-md gsap-up">Esempi reali di evoluzione. Non sono trasformazioni radicali — sono scelte precise che spostano la percezione e il valore.</p>
+        <div class="trasf-examples">
+          <div class="trasf-row gsap-up">
+            <span class="trasf-from">Lezione di surf</span>
+            <span class="trasf-arrow">→</span>
+            <span class="trasf-to">Percorso progressivo in 3 livelli con community post-corso</span>
+          </div>
+          <div class="trasf-row gsap-up">
+            <span class="trasf-from">B&B con colazione</span>
+            <span class="trasf-arrow">→</span>
+            <span class="trasf-to">Immersione territoriale con produttori locali selezionati</span>
+          </div>
+          <div class="trasf-row gsap-up">
+            <span class="trasf-from">Escursione guidata</span>
+            <span class="trasf-arrow">→</span>
+            <span class="trasf-to">Esperienza narrativa con storia del luogo e rituali locali</span>
+          </div>
+          <div class="trasf-row gsap-up">
+            <span class="trasf-from">Operatore singolo</span>
+            <span class="trasf-arrow">→</span>
+            <span class="trasf-to">Ecosistema con 3-5 partner complementari della zona</span>
+          </div>
+        </div>
       </div>
-      <p class="approccio-desc gsap-up">
-        Nessun pacchetto rigido. Lavoriamo per fasi.
-        Ogni sessione produce output concreti, non raccomandazioni generiche.
-      </p>
-    </div>
-
-    <div class="service-grid">
-      <div class="card gsap-up">
-        <span class="card-tag">Entry point</span>
-        <h3 class="card-name">Strategic Experience Session</h3>
-        <p class="card-desc">60–75 minuti. Analizziamo la tua offerta e identifichiamo le opportunità di evoluzione più immediate. Output: roadmap concreta.</p>
-        <div class="card-price">100–250€ <sub>/ sessione</sub></div>
-      </div>
-
-      <div class="card card--featured gsap-up">
-        <span class="card-tag">Più richiesto</span>
-        <h3 class="card-name">Experience Upgrade</h3>
-        <p class="card-desc">Trasformiamo un servizio esistente in un'esperienza distintiva. Output: struttura, sequenza, naming direction, idea pricing.</p>
-        <div class="card-price">350–600€</div>
-      </div>
-
-      <div class="card gsap-up">
-        <span class="card-tag">Riorganizzazione</span>
-        <h3 class="card-name">Experience Portfolio Clarity</h3>
-        <p class="card-desc">Riorganizziamo il tuo portfolio. Cosa tenere, cosa eliminare, cosa evolvere. Chiarezza prima dell'azione.</p>
-        <div class="card-price">450–800€</div>
+      <div>
+        <p class="label gsap-up">Possibili risultati</p>
+        <h2 class="h-section gsap-up" style="margin-bottom: 16px;">Benefici<br>concreti.</h2>
+        <p class="body-md gsap-up">Non promettiamo numeri. Mostriamo cosa diventa possibile quando l'esperienza è progettata bene.</p>
+        <div class="risultati-grid">
+          <div class="risultato gsap-up">
+            <div class="risultato-icon">↑</div>
+            <strong>Valore medio per cliente</strong>
+            <p>Meno clienti che pagano di più — e sono più soddisfatti.</p>
+          </div>
+          <div class="risultato gsap-up">
+            <div class="risultato-icon">◎</div>
+            <strong>Distintività riconoscibile</strong>
+            <p>Sei scelto per quello che sei, non per il prezzo più basso.</p>
+          </div>
+          <div class="risultato gsap-up">
+            <div class="risultato-icon">↗</div>
+            <strong>Passaparola spontaneo</strong>
+            <p>Le esperienze ben progettate si raccontano. La gente torna e porta altri.</p>
+          </div>
+          <div class="risultato gsap-up">
+            <div class="risultato-icon">⟳</div>
+            <strong>Stagionalità allargata</strong>
+            <p>Un'esperienza con senso funziona tutto l'anno, non solo in alta stagione.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ─── CHI SIAMO ────────────────────────────────────────────── -->
-<section class="section" id="chi-siamo">
+<!-- ─── 8. PER CHI È / NON È ───────────────────────── -->
+<section class="sec perchi">
   <div class="wrap">
-    <div class="chi-grid">
-      <div class="chi-text">
-        <p class="section-label gsap-up">Chi siamo</p>
-        <h2 class="section-title gsap-up" style="margin-bottom: 28px;">Uno studio<br>indipendente.</h2>
-        <p class="chi-body gsap-up">
-          Onda nasce dalla convinzione che i luoghi straordinari meritino di essere vissuti,
-          non solo visitati. Lavoriamo con operatori che credono nella qualità dell'esperienza
-          come leva economica reale.
-        </p>
-        <p class="chi-body gsap-up">
-          Siamo piccoli per scelta. Rimanere piccoli ci permette di mantenere
-          la qualità alta e il focus sul cliente.
-        </p>
-        <div class="chi-tags gsap-up">
-          <span class="tag">autenticità</span>
-          <span class="tag">intenzionalità</span>
-          <span class="tag">qualità</span>
-          <span class="tag">indipendenza</span>
-          <span class="tag">territorio</span>
-          <span class="tag">sostenibilità</span>
+    <p class="label gsap-up" style="margin-bottom: 16px;">Self-qualification</p>
+    <h2 class="h-section gsap-up" style="margin-bottom: 48px;">Prima di prenotare,<br>chiediti se sei nel posto giusto.</h2>
+    <div class="perchi-layout">
+      <div class="perchi-col perchi-col--si gsap-up">
+        <h3 class="perchi-title">Onda fa per te se —</h3>
+        <div class="perchi-list">
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Hai un posto con carattere e vuoi che si veda — e si paghi</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Senti che stai lasciando valore sul tavolo ma non sai esattamente dove</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Vuoi crescere senza rincorrere il volume o il turismo di massa</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Hai già una stagione alle spalle e vuoi capire come evolvere</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Cerchi un punto di vista esterno, non la validazione delle tue idee</p>
+          </div>
         </div>
       </div>
-
-      <div class="chi-visual gsap-up">
-        <div class="chi-quote-box">
-          <div class="chi-quote-blob"></div>
-          <div class="chi-quote-blob2"></div>
-          <blockquote class="chi-quote">
-            "Posso fare qualcosa di molto più interessante di così."
-          </blockquote>
-          <cite class="chi-cite">Quello che vogliamo che pensi dopo ogni conversazione con noi.</cite>
+      <div class="perchi-col perchi-col--no gsap-up">
+        <h3 class="perchi-title">Probabilmente no se —</h3>
+        <div class="perchi-list">
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Stai cercando qualcuno che esegua, non che pensi con te</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Il tuo obiettivo principale è aumentare le prenotazioni a basso prezzo</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Non sei disposto a cambiare nulla di quello che stai già facendo</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Sei all'inizio e non hai ancora un'offerta attiva su cui lavorare</p>
+          </div>
+          <div class="perchi-item">
+            <div class="perchi-dot"></div>
+            <p>Cerchi garanzie di risultato su un investimento non ancora definito</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1063,26 +956,231 @@
 </section>
 
 
-<!-- ─── CTA FINALE ───────────────────────────────────────────── -->
-<section class="cta-block" id="contatti">
+<!-- ─── 9. COME FUNZIONA LA SESSIONE ──────────────── -->
+<section class="sec comefunziona" id="sessione">
+  <div class="wrap">
+    <p class="label gsap-up">Come funziona</p>
+    <h2 class="h-section gsap-up">La Strategic Experience Session.</h2>
+    <div class="sessione-layout">
+      <div>
+        <p class="body-md gsap-up" style="margin-bottom: 40px;">Una conversazione strutturata da 60–75 minuti. Non un audit generico — uno sguardo specifico su di te, sul tuo posto, sulle opportunità concrete che stai lasciando.</p>
+        <div class="steps">
+          <div class="step gsap-up">
+            <span class="step-num">Prima</span>
+            <div class="step-body">
+              <strong>Brief pre-sessione</strong>
+              <p>Compili un form breve — offerta attuale, clienti, obiettivi, cosa non funziona. Arriva preparato, la sessione è già orientata su di te.</p>
+            </div>
+          </div>
+          <div class="step gsap-up">
+            <span class="step-num">Durante</span>
+            <div class="step-body">
+              <strong>Analisi e co-design</strong>
+              <p>60–75 minuti in call. Analizziamo insieme l'offerta, identifichiamo i gap, esploriamo le opportunità. Non parli con un consulente — pensi con un advisor.</p>
+            </div>
+          </div>
+          <div class="step gsap-up">
+            <span class="step-num">Dopo</span>
+            <div class="step-body">
+              <strong>Roadmap concreta</strong>
+              <p>Entro 48h ricevi un documento con almeno 3 opportunità prioritizzate, direzione di evoluzione e possibili passi successivi. Qualcosa che puoi usare subito.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sessione-highlight gsap-up">
+        <blockquote>
+          "Non ti vendo una soluzione preconfezionata. Ti aiuto a vedere il tuo posto con occhi nuovi."
+        </blockquote>
+        <div class="sessione-price">100–250€ <span>/ sessione</span></div>
+        <div class="sessione-cta">
+          <a href="mailto:ciao@onda.studio" class="btn btn--light">
+            Prenota ora
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+              <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 10. CREDIBILITÀ ────────────────────────────── -->
+<section class="sec credibilita">
+  <div class="wrap">
+    <div class="cred-layout">
+      <div>
+        <p class="label gsap-up">Perché funziona</p>
+        <h2 class="h-section gsap-up" style="margin-bottom: 32px;">Non teoria.<br>Osservazione<br>sul campo.</h2>
+        <p class="body-md gsap-up">Ho lavorato con operatori in Italia e negli Emirati. Ho studiato mercati dove l'experience economy è già matura — Portogallo, Canarie, Marocco, Sud-est asiatico. Il pattern è sempre lo stesso.</p>
+        <div class="cred-data">
+          <div class="cred-stat gsap-up">
+            <div class="cred-stat-num">3×</div>
+            <p class="cred-stat-label">valore medio per ospite in strutture con esperienza progettata vs. non progettata, a parità di location</p>
+          </div>
+          <div class="cred-stat gsap-up">
+            <div class="cred-stat-num">+4m</div>
+            <p class="cred-stat-label">mesi di stagione attiva guadagnati mediamente da operatori che hanno ridisegnato la propria offerta</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cred-cases">
+          <div class="case-card gsap-up">
+            <span class="case-type">Surf School — Portogallo</span>
+            <p class="case-result">Da lezioni singole a percorso in 3 livelli con community: +180% valore medio per cliente</p>
+            <p class="case-desc">Il prodotto era lo stesso. Hanno aggiunto struttura, naming, una logica di progressione e un gruppo WhatsApp post-corso. Il prezzo è triplicato perché l'esperienza aveva senso come percorso, non come singolo episodio.</p>
+          </div>
+          <div class="case-card gsap-up">
+            <span class="case-type">Agriturismo — Italia</span>
+            <p class="case-result">Da 3 a 7 mesi di stagione attiva ridisegnando l'offerta autunnale e invernale</p>
+            <p class="case-desc">Avevano già tutto: la cantina, i produttori vicini, la storia del territorio. Mancava solo il disegno. Con tre nuove esperienze stagionali progettate, hanno riempito mesi che prima erano vuoti.</p>
+          </div>
+        </div>
+        <div class="cred-observations" style="margin-top: 32px;">
+          <div class="cred-obs gsap-up">
+            <strong>Nei mercati maturi, il prezzo segue la struttura</strong>
+            <p>In Portogallo o alle Canarie, gli operatori che performano meglio non hanno posizioni migliori. Hanno offerte più progettate.</p>
+          </div>
+          <div class="cred-obs gsap-up">
+            <strong>Il passaparola è direttamente proporzionale alla memorabilità</strong>
+            <p>Le esperienze che generano racconti non sono le più costose — sono le più intenzionali. Si sentono progettate per loro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 11. GARANZIA ───────────────────────────────── -->
+<section class="sec garanzia">
+  <div class="wrap">
+    <div class="garanzia-box gsap-up">
+      <div style="position: relative; z-index: 1;">
+        <p class="label label--light" style="margin-bottom: 24px;">Il rischio</p>
+        <h2 class="garanzia-title">
+          Investi meno<br>di una cena.<br>
+          <em>Scopri tutto il<br>potenziale del tuo posto.</em>
+        </h2>
+        <p class="garanzia-body">
+          Se dopo la sessione decidi di lavorare insieme su un servizio, il costo della sessione si scala interamente dal primo progetto. Altrimenti, porti a casa una roadmap concreta con le opportunità prioritizzate. In entrambi i casi, hai guadagnato chiarezza su dove stai lasciando valore.
+        </p>
+        <p class="garanzia-body" style="margin-top: 16px;">
+          Il rischio è tuo solo se non fai nulla di quello che emerge.
+        </p>
+      </div>
+      <div class="garanzia-mechanic">
+        <div class="garanzia-mechanic-num">100€ <span>min</span></div>
+        <p>Prenoti la sessione. Alla fine hai una roadmap concreta.<br><br>
+        <strong>Se continui a lavorare con noi</strong>, il costo della sessione si scala dal servizio successivo. La sessione ti costa zero.<br><br>
+        <strong>Se non continui</strong>, hai pagato €100-250 per sapere esattamente dove stai lasciando valore. Difficile trovare un investimento più asimmetrico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 12. FAQ ─────────────────────────────────────── -->
+<section class="sec">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div>
+        <p class="label gsap-up">Domande frequenti</p>
+        <h2 class="h-section gsap-up">Obiezioni<br>frequenti.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item gsap-up">
+          <button class="faq-question">
+            <span>In cosa è diverso da una consulenza normale?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <p class="faq-answer">Una consulenza tradizionale analizza, diagnóstica e produce un report. Noi operiamo come thought partner: lavoriamo insieme durante la sessione, non solo prima e dopo. L'output non è un documento lungo — è una direzione chiara con passi concreti e prioritizzati.</p>
+        </div>
+        <div class="faq-item gsap-up">
+          <button class="faq-question">
+            <span>Devo già avere un'offerta strutturata?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <p class="faq-answer">Sì, è necessario avere almeno una stagione di attività alle spalle e un'offerta attiva. Non lavoriamo su idee — lavoriamo su realtà esistenti con potenziale non espresso. Se sei in fase di start-up, torna quando hai qualcosa su cui costruire.</p>
+        </div>
+        <div class="faq-item gsap-up">
+          <button class="faq-question">
+            <span>Quanto tempo richiede la sessione?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <p class="faq-answer">60–75 minuti di call più un brief pre-sessione di 15-20 minuti che compili in anticipo. Entro 48 ore dalla call ricevi la roadmap. Il tempo totale investito da parte tua è circa 2 ore, concentrate in una settimana.</p>
+        </div>
+        <div class="faq-item gsap-up">
+          <button class="faq-question">
+            <span>Cosa succede se voglio andare avanti dopo la sessione?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <p class="faq-answer">La sessione produce spesso una direzione chiara su dove intervenire. Se vuoi procedere con un servizio specifico — Experience Upgrade, Portfolio Clarity o altro — il costo della sessione viene scalato integralmente. Non paghi due volte il punto di partenza.</p>
+        </div>
+        <div class="faq-item gsap-up">
+          <button class="faq-question">
+            <span>Lavorate solo in Italia?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <p class="faq-answer">No. Lavoriamo da remoto con operatori in tutta Europa e oltre. Abbiamo esperienza diretta in mercati come Portogallo, Canarie, Emirati e Sud-est asiatico. La call è in italiano o inglese a seconda della tua preferenza.</p>
+        </div>
+        <div class="faq-item gsap-up">
+          <button class="faq-question">
+            <span>Come faccio a sapere se la sessione vale il costo?</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <p class="faq-answer">Se dalla sessione non emergono almeno 3 opportunità concrete e prioritizzate che non avevi già considerato, ti rimborsiamo. Non è mai successo — ma il rischio è nostro, non tuo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 13. CTA DOPPIA ──────────────────────────────── -->
+<section class="cta-top">
   <div class="wrap">
     <p class="cta-label gsap-up">Inizia ora</p>
-    <h2 class="cta-title gsap-up">
-      Il tuo posto<br>
-      merita di essere<br>
-      <em>progettato.</em>
+    <h2 class="h-display h-display--light gsap-up">
+      Il tuo posto merita<br>di essere <em>progettato.</em>
     </h2>
-    <a href="mailto:ciao@onda.studio" class="btn-light gsap-up">
-      Prenota una sessione — da 100€
-      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-        <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
+    <p class="cta-sub gsap-up">Una sessione da 60-75 minuti. Una roadmap concreta. Meno di una cena fuori.</p>
+    <div style="margin-top: 48px;">
+      <a href="mailto:ciao@onda.studio" class="btn btn--light gsap-up">
+        Prenota la sessione — da 100€
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-bottom">
+  <div class="wrap">
+    <div class="cta-bottom-layout gsap-up">
+      <div class="cta-bottom-text">
+        <h2 class="h-section">Hai domande prima di prenotare?</h2>
+        <p class="body-md" style="margin-top: 12px;">Scrivici. Rispondiamo entro 24 ore, senza script e senza CRM.</p>
+      </div>
+      <div class="cta-bottom-action">
+        <a href="mailto:ciao@onda.studio" class="btn btn--dark">
+          Scrivici
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+            <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <p class="cta-bottom-note">Nessuna newsletter, nessun funnel. Solo una conversazione vera.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 
-<!-- ─── FOOTER ───────────────────────────────────────────────── -->
+<!-- ─── FOOTER ──────────────────────────────────────── -->
 <footer class="footer">
   <span class="footer-logo">Onda</span>
   <p class="footer-copy">© 2026 Onda Studio. Experience Design.</p>
@@ -1096,55 +1194,48 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // ── Hero entrance ──────────────────────────────────────────
-  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  heroTl
-    .to('#h-eyebrow',  { opacity: 1, y: 0, duration: 0.7 }, 0.2)
-    .to('#h-title',    { opacity: 1, y: 0, duration: 1.0 }, 0.4)
-    .to('#h-sub',      { opacity: 0.65, y: 0, duration: 0.8 }, 0.65)
-    .to('#h-actions',  { opacity: 1, y: 0, duration: 0.7 }, 0.85)
-    .to('#h-visual',   { opacity: 1, y: 0, duration: 1.1 }, 0.5);
+  // Hero initial states
+  gsap.set(['#h-label','#h-title','#h-sub','#h-actions','#h-visual'], { opacity:0, y:28 });
 
-  // Hero elements start hidden
-  gsap.set(['#h-eyebrow','#h-title','#h-sub','#h-actions','#h-visual'], {
-    opacity: 0, y: 28
-  });
+  // Hero entrance
+  gsap.timeline({ defaults: { ease:'power3.out' } })
+    .to('#h-label',   { opacity:1, y:0, duration:.7 }, .2)
+    .to('#h-title',   { opacity:1, y:0, duration:1  }, .4)
+    .to('#h-sub',     { opacity:.65, y:0, duration:.8 }, .65)
+    .to('#h-actions', { opacity:1, y:0, duration:.7 }, .85)
+    .to('#h-visual',  { opacity:1, y:0, duration:1.1 }, .5);
 
-  // ── Hero wave parallax ────────────────────────────────────
+  // Hero parallax
   gsap.to('.hero-svg-wrap', {
-    y: -70,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1.5
-    }
+    y: -70, ease:'none',
+    scrollTrigger: { trigger:'.hero', start:'top top', end:'bottom top', scrub:1.5 }
   });
 
-  // ── Scroll fade-ins ───────────────────────────────────────
+  // Scroll fade-ins
   gsap.utils.toArray('.gsap-up').forEach((el, i) => {
     gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-      delay: (i % 3) * 0.1,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 87%',
-        toggleActions: 'play none none none'
-      }
+      opacity:1, y:0, duration:.75, ease:'power2.out',
+      delay: (i % 3) * .08,
+      scrollTrigger: { trigger:el, start:'top 88%', toggleActions:'play none none none' }
     });
   });
 
-  // ── Nav shrink on scroll ──────────────────────────────────
-  const nav = document.querySelector('.nav');
+  // Nav shrink
+  const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.style.padding = window.scrollY > 50
-      ? '16px var(--pad)'
-      : '28px var(--pad)';
-  }, { passive: true });
+      ? `16px var(--pad)` : `28px var(--pad)`;
+  }, { passive:true });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
 </script>
 
 </body>
