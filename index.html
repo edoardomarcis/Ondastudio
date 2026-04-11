@@ -311,6 +311,77 @@
       background: linear-gradient(to bottom, transparent 40%, rgba(15,42,68,.3));
     }
 
+    /* ─── ABOUT ME ───────────────────────────────── */
+    .about-me {
+      background: linear-gradient(160deg, rgba(111,143,123,.06) 0%, rgba(247,247,245,0) 55%);
+      border-top: 1px solid rgba(47,93,80,.1);
+      border-bottom: 1px solid rgba(47,93,80,.08);
+    }
+    .about-layout {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: clamp(48px, 7vw, 100px);
+      align-items: start;
+    }
+    .about-photo-col { position: relative; }
+    .about-photo-wrap {
+      position: relative;
+      height: 520px;
+    }
+    .about-photo-main {
+      width: 320px; height: 440px;
+      top: 0; left: 20px;
+      transform: rotate(-2.5deg);
+      z-index: 2;
+    }
+    .about-photo-accent {
+      width: 200px; height: 240px;
+      bottom: 0; right: 10px;
+      transform: rotate(3.5deg);
+      z-index: 1;
+    }
+    .about-tag {
+      position: absolute;
+      top: 30px; left: 0; z-index: 4;
+      background: var(--green-deep); color: var(--bg);
+      font-size: 9px; font-weight: 500; letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .about-text-col { padding-top: 12px; }
+    .about-intro { font-size: 20px; line-height: 1.75; opacity: .7; margin-bottom: 24px; }
+    .about-body { font-size: 16px; line-height: 1.8; opacity: .65; margin-bottom: 20px; }
+    .about-quote {
+      margin: 36px 0 32px;
+      padding-left: 24px;
+      border-left: 2px solid var(--green-deep);
+      font-family: var(--f-display);
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-style: italic; font-weight: 300;
+      color: var(--blue-deep); line-height: 1.4;
+    }
+    .about-meta {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .about-meta-item {
+      font-size: 11px; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--blue-soft);
+      opacity: .7;
+    }
+    .about-meta-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--green-deep); opacity: .5;
+    }
+    @media (max-width: 900px) {
+      .about-layout { grid-template-columns: 1fr; }
+      .about-photo-wrap { height: 380px; }
+      .about-photo-main { width: 240px; height: 320px; }
+      .about-photo-accent { width: 160px; height: 190px; }
+    }
+
     /* ─── MARQUEE ─────────────────────────────────── */
     .marquee-bar {
       border-top: 1px solid rgba(15,42,68,.08);
@@ -728,7 +799,7 @@
   <div class="hero-visual" id="h-visual">
     <div class="hero-photos">
       <div class="photo-frame hero-photo-back">
-        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80&fit=crop&crop=center" alt="Sailing — luoghi da vivere">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&fit=crop&crop=center" alt="Sailing — luoghi da vivere">
         <span class="photo-caption">Costa atlantica, Portogallo</span>
       </div>
       <div class="photo-frame hero-photo-front">
@@ -953,7 +1024,7 @@
 
 <!-- ─── EDITORIAL BREAK ────────────────────────────── -->
 <div class="editorial-break">
-  <img class="editorial-break-img" src="https://images.unsplash.com/photo-1502920514313-52581002a659?w=1600&q=80&fit=crop&crop=center" alt="Luoghi straordinari">
+  <img class="editorial-break-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1600&q=80&fit=crop&crop=center" alt="Luoghi straordinari">
   <div class="editorial-break-overlay">
     <div class="editorial-break-text">
       <p class="editorial-break-label">Osservazione dal campo</p>
@@ -1173,7 +1244,7 @@
           </div>
           <div class="case-card gsap-up">
             <div class="case-photo">
-              <img src="https://images.unsplash.com/photo-1444681961652-685ee8ac8370?w=700&q=80&fit=crop&crop=center" alt="Agriturismo Italia">
+              <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=700&q=80&fit=crop&crop=center" alt="Agriturismo Italia">
               <div class="case-photo-overlay"></div>
             </div>
             <span class="case-type">Agriturismo — Italia</span>
@@ -1190,6 +1261,48 @@
             <strong>Il passaparola è direttamente proporzionale alla memorabilità</strong>
             <p>Le esperienze che generano racconti non sono le più costose — sono le più intenzionali. Si sentono progettate per loro.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 10.5 CHI SONO ──────────────────────────────── -->
+<section class="sec about-me">
+  <div class="wrap">
+    <div class="about-layout">
+      <div class="about-photo-col gsap-up">
+        <div class="about-photo-wrap">
+          <span class="about-tag">Experience Design</span>
+          <div class="photo-frame about-photo-main">
+            <!-- Sostituisci con la tua foto: src="path/to/your-photo.jpg" -->
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=640&q=80&fit=crop&crop=faces,center" alt="Edoardo Marcis — Onda Studio">
+            <span class="photo-caption">Edoardo Marcis</span>
+          </div>
+          <div class="photo-frame about-photo-accent">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80&fit=crop&crop=center" alt="Bali — mercati maturi">
+            <span class="photo-caption">Bali, Indonesia</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-text-col">
+        <p class="label gsap-up">Chi c'è dietro</p>
+        <h2 class="h-section gsap-up" style="margin-bottom: 28px;">Sono Edoardo.<br><em>Ho imparato<br>sul campo.</em></h2>
+        <p class="about-intro gsap-up">Ho lavorato con operatori in Italia e negli Emirati. Ho studiato da vicino mercati dove l'experience economy è già matura — Portogallo, Canarie, Marocco, Sud-est asiatico.</p>
+        <p class="about-body gsap-up">Non ho un approccio accademico. Il mio metodo viene dall'osservazione diretta: cosa funziona davvero, perché funziona, e come si traduce nel contesto specifico di ogni operatore.</p>
+        <blockquote class="about-quote gsap-up">
+          "I luoghi migliori che ho visitato non erano i più famosi.<br>
+          Erano quelli dove qualcuno aveva pensato<br>
+          a quello che volevi <em>sentire</em>."
+        </blockquote>
+        <p class="about-body gsap-up">Onda nasce da questa convinzione: il potenziale dei luoghi viene spesso lasciato non progettato. Non per mancanza di qualità, ma perché manca qualcuno che aiuti a vederlo e disegnarlo.</p>
+        <div class="about-meta gsap-up">
+          <span class="about-meta-item">Milano</span>
+          <span class="about-meta-dot"></span>
+          <span class="about-meta-item">Dubai</span>
+          <span class="about-meta-dot"></span>
+          <span class="about-meta-item">In movimento</span>
         </div>
       </div>
     </div>
