@@ -184,6 +184,11 @@
       color: var(--carbon); opacity: .65;
       max-width: 440px; margin-bottom: 52px;
     }
+    .hero-for {
+      font-size: 11px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; opacity: .38; color: var(--carbon);
+      margin-bottom: 44px; line-height: 1.8;
+    }
     .hero-actions { display: flex; align-items: center; gap: 32px; }
     .hero-visual {
       display: flex; align-items: center; justify-content: center;
@@ -311,6 +316,55 @@
     .case-photo-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to bottom, transparent 40%, rgba(12,58,74,.3));
+    }
+
+    /* ─── MICRO BRIDGE ───────────────────────────── */
+    .micro-bridge {
+      padding: clamp(40px, 5vw, 64px) 0;
+      text-align: center;
+    }
+    .micro-bridge-line {
+      font-family: var(--f-display);
+      font-size: clamp(18px, 2vw, 26px);
+      font-style: italic; font-weight: 300;
+      color: var(--blue-deep); opacity: .5;
+      max-width: 640px; margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ─── PERCHÉ DA QUI ──────────────────────────── */
+    .perche-qui { background: rgba(12,58,74,.03); }
+    .perche-qui-intro {
+      max-width: 580px; margin-bottom: 64px;
+    }
+    .perche-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .perche-card {
+      background: var(--white);
+      border-radius: 20px; padding: 40px 36px;
+      border: 1px solid rgba(12,58,74,.07);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .perche-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(12,58,74,.08);
+    }
+    .perche-num {
+      font-family: var(--f-display); font-size: 40px;
+      font-weight: 300; font-style: italic;
+      color: var(--blue-soft); opacity: .3;
+      line-height: 1; margin-bottom: 20px;
+    }
+    .perche-title {
+      font-family: var(--f-display); font-size: 22px;
+      font-weight: 500; color: var(--blue-deep);
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .perche-text { font-size: 14px; line-height: 1.75; opacity: .6; }
+    @media (max-width: 860px) {
+      .perche-grid { grid-template-columns: 1fr; }
     }
 
     /* ─── ABOUT ME ───────────────────────────────── */
@@ -787,6 +841,7 @@
     <p class="hero-sub" id="h-sub">
       Aiutiamo operatori legati ai luoghi a trasformare servizi in esperienze che le persone ricordano — e che generano più valore, senza inseguire il volume.
     </p>
+    <p class="hero-for gsap-up" id="h-for">Per: hospitality boutique · surf school · retreat · agriturismo · sailing · outdoor guide</p>
     <div class="hero-actions" id="h-actions">
       <a href="#sessione" class="btn btn--dark">
         Scopri come
@@ -1078,116 +1133,6 @@
 </section>
 
 
-<!-- ─── 8. PER CHI È / NON È ───────────────────────── -->
-<section class="sec perchi">
-  <div class="wrap">
-    <p class="label gsap-up" style="margin-bottom: 16px;">Self-qualification</p>
-    <h2 class="h-section gsap-up" style="margin-bottom: 48px;">Prima di prenotare,<br>chiediti se sei nel posto giusto.</h2>
-    <div class="perchi-layout">
-      <div class="perchi-col perchi-col--si gsap-up">
-        <h3 class="perchi-title">Onda fa per te se —</h3>
-        <div class="perchi-list">
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Hai un posto con carattere e vuoi che si veda — e si paghi</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Senti che stai lasciando valore sul tavolo ma non sai esattamente dove</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Vuoi crescere senza rincorrere il volume o il turismo di massa</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Hai già una stagione alle spalle e vuoi capire come evolvere</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Cerchi un punto di vista esterno, non la validazione delle tue idee</p>
-          </div>
-        </div>
-      </div>
-      <div class="perchi-col perchi-col--no gsap-up">
-        <h3 class="perchi-title">Probabilmente no se —</h3>
-        <div class="perchi-list">
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Stai cercando qualcuno che esegua, non che pensi con te</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Il tuo obiettivo principale è aumentare le prenotazioni a basso prezzo</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Non sei disposto a cambiare nulla di quello che stai già facendo</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Sei all'inizio e non hai ancora un'offerta attiva su cui lavorare</p>
-          </div>
-          <div class="perchi-item">
-            <div class="perchi-dot"></div>
-            <p>Cerchi garanzie di risultato su un investimento non ancora definito</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ─── 9. COME FUNZIONA LA SESSIONE ──────────────── -->
-<section class="sec comefunziona" id="sessione">
-  <div class="wrap">
-    <p class="label gsap-up">Come funziona</p>
-    <h2 class="h-section gsap-up">La Strategic Experience Session.</h2>
-    <div class="sessione-layout">
-      <div>
-        <p class="body-md gsap-up" style="margin-bottom: 40px;">Una conversazione strutturata da 60–75 minuti. Non un audit generico — uno sguardo specifico su di te, sul tuo posto, sulle opportunità concrete che stai lasciando.</p>
-        <div class="steps">
-          <div class="step gsap-up">
-            <span class="step-num">Prima</span>
-            <div class="step-body">
-              <strong>Brief pre-sessione</strong>
-              <p>Compili un form breve — offerta attuale, clienti, obiettivi, cosa non funziona. Arriva preparato, la sessione è già orientata su di te.</p>
-            </div>
-          </div>
-          <div class="step gsap-up">
-            <span class="step-num">Durante</span>
-            <div class="step-body">
-              <strong>Analisi e co-design</strong>
-              <p>60–75 minuti in call. Analizziamo insieme l'offerta, identifichiamo i gap, esploriamo le opportunità. Non parli con un consulente — pensi con un advisor.</p>
-            </div>
-          </div>
-          <div class="step gsap-up">
-            <span class="step-num">Dopo</span>
-            <div class="step-body">
-              <strong>Roadmap concreta</strong>
-              <p>Entro 48h ricevi un documento con almeno 3 opportunità prioritizzate, direzione di evoluzione e possibili passi successivi. Qualcosa che puoi usare subito.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="sessione-highlight gsap-up">
-        <blockquote>
-          "Non ti vendo una soluzione preconfezionata. Ti aiuto a vedere il tuo posto con occhi nuovi."
-        </blockquote>
-        <div class="sessione-price">100–250€ <span>/ sessione</span></div>
-        <div class="sessione-cta">
-          <a href="mailto:ciao@onda.studio" class="btn btn--light">
-            Prenota ora
-            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-              <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ─── 10. CREDIBILITÀ ────────────────────────────── -->
@@ -1281,6 +1226,133 @@
           <span class="about-meta-item">Dubai</span>
           <span class="about-meta-dot"></span>
           <span class="about-meta-item">In movimento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── micro-bridge ──────────────────────────────── -->
+<div class="micro-bridge">
+  <p class="micro-bridge-line">Se riconosci il tuo posto in quello che hai letto fin qui,<br>la domanda che rimane è una sola.</p>
+</div>
+
+
+<!-- ─── PER CHI È / NON È ─────────────────────────── -->
+<section class="sec perchi">
+  <div class="wrap">
+    <p class="label gsap-up" style="margin-bottom: 16px;">Sei nel posto giusto?</p>
+    <h2 class="h-section gsap-up" style="margin-bottom: 48px;">Prima di continuare,<br>chiediti una cosa.</h2>
+    <div class="perchi-layout">
+      <div class="perchi-col perchi-col--si gsap-up">
+        <h3 class="perchi-title">Onda fa per te se —</h3>
+        <div class="perchi-list">
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Hai un posto con carattere e vuoi che si veda — e si paghi</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Senti che stai lasciando valore sul tavolo ma non sai esattamente dove</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Vuoi crescere senza rincorrere il volume o il turismo di massa</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Hai già una stagione alle spalle e vuoi capire come evolvere</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Cerchi un punto di vista esterno, non la validazione delle tue idee</p></div>
+        </div>
+      </div>
+      <div class="perchi-col perchi-col--no gsap-up">
+        <h3 class="perchi-title">Probabilmente no se —</h3>
+        <div class="perchi-list">
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Stai cercando qualcuno che esegua, non che pensi con te</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Il tuo obiettivo principale è aumentare le prenotazioni a basso prezzo</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Non sei disposto a cambiare nulla di quello che stai già facendo</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Sei all'inizio e non hai ancora un'offerta attiva su cui lavorare</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Cerchi garanzie di risultato su un investimento non ancora definito</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── PERCHÉ DA QUI ─────────────────────────────── -->
+<section class="sec perche-qui">
+  <div class="wrap">
+    <div class="perche-qui-intro">
+      <p class="label gsap-up">Perché iniziare da qui</p>
+      <h2 class="h-section gsap-up">Una conversazione.<br><em>Chiarezza concreta.</em></h2>
+    </div>
+    <div class="perche-grid">
+      <div class="perche-card gsap-up">
+        <div class="perche-num">01</div>
+        <h3 class="perche-title">Prima di investire, capisci dove investire</h3>
+        <p class="perche-text">Marketing, fotografie, ristrutturazioni — tutto funziona meglio se sai cosa stai comunicando e a chi. La sessione viene prima, non dopo.</p>
+      </div>
+      <div class="perche-card gsap-up">
+        <div class="perche-num">02</div>
+        <h3 class="perche-title">Rischio asimmetrico in tuo favore</h3>
+        <p class="perche-text">100–250€ per sapere esattamente dove stai lasciando valore. Confrontalo con il costo di un'altra stagione media, o di un progetto sbagliato.</p>
+      </div>
+      <div class="perche-card gsap-up">
+        <div class="perche-num">03</div>
+        <h3 class="perche-title">Esci con qualcosa in mano</h3>
+        <p class="perche-text">Non idee vaghe. Entro 48h hai un documento scritto su misura — opportunità prioritizzate, azioni concrete, direzione chiara. Usabile da subito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── COME FUNZIONA LA SESSIONE ─────────────────── -->
+<section class="sec comefunziona" id="sessione">
+  <div class="wrap">
+    <p class="label gsap-up">Come funziona</p>
+    <h2 class="h-section gsap-up">La Strategic Experience Session.</h2>
+    <div class="sessione-layout">
+      <div>
+        <p class="body-md gsap-up" style="margin-bottom: 40px;">Una conversazione strutturata da 60–75 minuti. Non un audit generico — uno sguardo specifico su di te, sul tuo posto, sulle opportunità concrete che stai lasciando.</p>
+        <div class="steps">
+          <div class="step gsap-up">
+            <span class="step-num">Prima</span>
+            <div class="step-body">
+              <strong>Brief pre-sessione</strong>
+              <p>Compili un form breve — offerta attuale, clienti, obiettivi, cosa non funziona. Arrivi preparato, la sessione è già orientata su di te.</p>
+            </div>
+          </div>
+          <div class="step gsap-up">
+            <span class="step-num">Durante</span>
+            <div class="step-body">
+              <strong>Analisi e co-design</strong>
+              <p>60–75 minuti in call. Analizziamo l'offerta, identifichiamo i gap, esploriamo le opportunità. Non parli con un consulente — pensi con un advisor.</p>
+            </div>
+          </div>
+          <div class="step gsap-up">
+            <span class="step-num">Dopo</span>
+            <div class="step-body">
+              <strong>Roadmap scritta su misura per te</strong>
+              <p>Entro 48h ricevi un documento che contiene: le 3–5 opportunità concrete identificate nel tuo caso, una gerarchia chiara su cosa fare prima, 1–2 azioni che puoi iniziare questa settimana a costo zero, e una direzione di posizionamento più precisa. Non un template — un'analisi che parte da dove sei.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sessione-highlight gsap-up">
+        <blockquote>
+          "In 60 minuti sai dove stai lasciando valore. Che tu decida di continuare con me o no — quella chiarezza è tua."
+        </blockquote>
+        <div class="sessione-price">100–250€ <span>/ sessione</span></div>
+        <div class="sessione-cta">
+          <a href="mailto:ciao@onda.studio" class="btn btn--light">
+            Prenota la sessione
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+              <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <p style="font-size: 12px; opacity: .45; margin-top: 16px; line-height: 1.6;">Se poi decidi di lavorare insieme, il costo si scala dal primo progetto.</p>
         </div>
       </div>
     </div>
