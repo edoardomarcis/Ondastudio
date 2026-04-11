@@ -332,7 +332,23 @@
       line-height: 1.5;
     }
 
-    /* ─── PERCHÉ DA QUI ──────────────────────────── */
+    /* ─── VSL PLACEHOLDER ───────────────────────────── */
+    .vsl-placeholder { display: none; } /* attivare quando video pronto */
+
+    /* ─── INLINE CTA STRIPE ──────────────────────────── */
+    .cta-stripe {
+      padding: clamp(32px, 4vw, 56px) 0;
+      text-align: center;
+      border-top: 1px solid rgba(12,58,74,.07);
+    }
+    .cta-stripe-nudge {
+      font-family: var(--f-display); font-style: italic;
+      font-size: clamp(16px, 1.6vw, 20px); font-weight: 300;
+      color: var(--blue-deep); opacity: .5;
+      margin-bottom: 20px; line-height: 1.5;
+    }
+
+    /* ─── COME INIZIARE ──────────────────────────────── */
     .perche-qui { background: rgba(12,58,74,.03); }
     .perche-qui-intro {
       max-width: 580px; margin-bottom: 64px;
@@ -867,9 +883,53 @@
 </section>
 
 
+<!-- ─── 2. VISION ───────────────────────────────────── -->
+<section class="sec vision">
+  <div class="wrap">
+    <div class="vision-layout">
+      <div>
+        <p class="label label--light gsap-up">La visione</p>
+        <h2 class="h-display h-display--light gsap-up">
+          Un turismo dove<br>i luoghi vengono<br>
+          <em>vissuti,</em><br>non consumati.
+        </h2>
+        <div class="vision-statements">
+          <div class="vision-statement gsap-up">
+            <strong>Esperienze come ecosistemi</strong>
+            <p>Non un singolo servizio, ma una rete di momenti connessi. Il surf lodge che collabora con il pescatore locale, il retreat che si intreccia con il produttore di vino. Valore distribuito, identità amplificata.</p>
+          </div>
+          <div class="vision-statement gsap-up">
+            <strong>Più significato, più valore</strong>
+            <p>I viaggiatori del futuro non cercano comfort standardizzato. Cercano connessione con il luogo, con le persone, con qualcosa di autentico. Chi progetta questo, vince.</p>
+          </div>
+          <div class="vision-statement gsap-up">
+            <strong>I piccoli operatori prosperano</strong>
+            <p>Non servono grandi numeri. Serve un'offerta che attrae le persone giuste, disposti a pagare il giusto prezzo per qualcosa di unico.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="vision-data gsap-up">
+          <div class="vision-stat">
+            <div class="vision-stat-num">45<span>%</span></div>
+            <p class="vision-stat-label">delle vendite nel travel premium entro il 2025 sarà guidata da Gen Z e Millennial — la generazione che sceglie esperienze autentiche e paga di più per averle.</p>
+          </div>
+          <div class="vision-stat">
+            <div class="vision-stat-num">$143<span>B</span></div>
+            <p class="vision-stat-label">il potere d'acquisto della Gen Z — un segmento che privilegia autenticità, contatto locale e sostenibilità verificabile rispetto al lusso standardizzato.</p>
+          </div>
+          <div class="vision-stat">
+            <div class="vision-stat-num">2030</div>
+            <p class="vision-stat-label">anno in cui le destinazioni "off the beaten path" vedranno la crescita più forte — esattamente dove operano i clienti di Onda. (Institute for Hospitality Management)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
-<!-- ─── 2. PROBLEM ─────────────────────────────────── -->
+<!-- ─── 3. PROBLEM ─────────────────────────────────── -->
 <section class="sec problem" id="problem">
   <div class="wrap">
     <p class="label label--light gsap-up">Il problema</p>
@@ -939,50 +999,10 @@
 </section>
 
 
-<!-- ─── 4. VISION ───────────────────────────────────── -->
-<section class="sec vision">
-  <div class="wrap">
-    <div class="vision-layout">
-      <div>
-        <p class="label label--light gsap-up">La visione</p>
-        <h2 class="h-display h-display--light gsap-up">
-          Un turismo dove<br>i luoghi vengono<br>
-          <em>vissuti,</em><br>non consumati.
-        </h2>
-        <div class="vision-statements">
-          <div class="vision-statement gsap-up">
-            <strong>Esperienze come ecosistemi</strong>
-            <p>Non un singolo servizio, ma una rete di momenti connessi. Il surf lodge che collabora con il pescatore locale, il retreat che si intreccia con il produttore di vino. Valore distribuito, identità amplificata.</p>
-          </div>
-          <div class="vision-statement gsap-up">
-            <strong>Più significato, più valore</strong>
-            <p>I viaggiatori del futuro non cercano comfort standardizzato. Cercano connessione con il luogo, con le persone, con qualcosa di autentico. Chi progetta questo, vince.</p>
-          </div>
-          <div class="vision-statement gsap-up">
-            <strong>I piccoli operatori prosperano</strong>
-            <p>Non servono grandi numeri. Serve un'offerta che attrae le persone giuste, disposti a pagare il giusto prezzo per qualcosa di unico.</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="vision-data gsap-up">
-          <div class="vision-stat">
-            <div class="vision-stat-num">45<span>%</span></div>
-            <p class="vision-stat-label">delle vendite nel travel premium entro il 2025 sarà guidata da Gen Z e Millennial — la generazione che sceglie esperienze autentiche e paga di più per averle.</p>
-          </div>
-          <div class="vision-stat">
-            <div class="vision-stat-num">$143<span>B</span></div>
-            <p class="vision-stat-label">il potere d'acquisto della Gen Z — un segmento che privilegia autenticità, contatto locale e sostenibilità verificabile rispetto al lusso standardizzato.</p>
-          </div>
-          <div class="vision-stat">
-            <div class="vision-stat-num">2030</div>
-            <p class="vision-stat-label">anno in cui le destinazioni "off the beaten path" vedranno la crescita più forte — esattamente dove operano i clienti di Onda. (Institute for Hospitality Management)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ─── VSL PLACEHOLDER (attivare con video) ───────── -->
+<div class="vsl-placeholder">
+  <div class="wrap" style="max-width:800px;"></div>
+</div>
 
 
 <!-- ─── 5. OPPORTUNITY ──────────────────────────────── -->
@@ -1013,6 +1033,13 @@
     </div>
   </div>
 </section>
+
+
+<!-- CTA stripe dopo Opportunity -->
+<div class="cta-stripe">
+  <p class="cta-stripe-nudge">Il potenziale c'è. Serve qualcuno che aiuti a vederlo.</p>
+  <a href="#sessione" class="btn btn--outline">Prenota la sessione →</a>
+</div>
 
 
 <!-- ─── 6. APPROCCIO ────────────────────────────────── -->
@@ -1135,6 +1162,13 @@
 
 
 
+<!-- CTA stripe dopo Risultati -->
+<div class="cta-stripe">
+  <p class="cta-stripe-nudge">Vuoi capire dove puoi arrivare con il tuo posto?</p>
+  <a href="#sessione" class="btn btn--outline">Inizia con una sessione →</a>
+</div>
+
+
 <!-- ─── 10. CREDIBILITÀ ────────────────────────────── -->
 <section class="sec credibilita">
   <div class="wrap">
@@ -1239,53 +1273,13 @@
 </div>
 
 
-<!-- ─── PER CHI È / NON È ─────────────────────────── -->
-<section class="sec perchi">
-  <div class="wrap">
-    <p class="label gsap-up" style="margin-bottom: 16px;">Sei nel posto giusto?</p>
-    <h2 class="h-section gsap-up" style="margin-bottom: 48px;">Prima di continuare,<br>chiediti una cosa.</h2>
-    <div class="perchi-layout">
-      <div class="perchi-col perchi-col--si gsap-up">
-        <h3 class="perchi-title">Onda fa per te se —</h3>
-        <div class="perchi-list">
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Hai un posto con carattere e vuoi che si veda — e si paghi</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Senti che stai lasciando valore sul tavolo ma non sai esattamente dove</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Vuoi crescere senza rincorrere il volume o il turismo di massa</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Hai già una stagione alle spalle e vuoi capire come evolvere</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Cerchi un punto di vista esterno, non la validazione delle tue idee</p></div>
-        </div>
-      </div>
-      <div class="perchi-col perchi-col--no gsap-up">
-        <h3 class="perchi-title">Probabilmente no se —</h3>
-        <div class="perchi-list">
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Stai cercando qualcuno che esegua, non che pensi con te</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Il tuo obiettivo principale è aumentare le prenotazioni a basso prezzo</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Non sei disposto a cambiare nulla di quello che stai già facendo</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Sei all'inizio e non hai ancora un'offerta attiva su cui lavorare</p></div>
-          <div class="perchi-item"><div class="perchi-dot"></div>
-            <p>Cerchi garanzie di risultato su un investimento non ancora definito</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ─── PERCHÉ DA QUI ─────────────────────────────── -->
+<!-- ─── COME INIZIARE ──────────────────────────────── -->
 <section class="sec perche-qui">
   <div class="wrap">
     <div class="perche-qui-intro">
-      <p class="label gsap-up">Perché iniziare da qui</p>
+      <p class="label gsap-up">Come iniziare</p>
       <h2 class="h-section gsap-up">Una conversazione.<br><em>Chiarezza concreta.</em></h2>
+      <p class="body-md gsap-up" style="max-width:560px; margin-top:20px; opacity:.7;">Non serve un contratto. Non serve un brief da 30 pagine. Serve solo essere pronti a ragionare sul tuo posto con onestà.</p>
     </div>
     <div class="perche-grid">
       <div class="perche-card gsap-up">
@@ -1360,6 +1354,61 @@
 </section>
 
 
+<!-- ─── CTA STRIPE post-sessione ──────────────────── -->
+<div class="cta-stripe">
+  <div class="wrap" style="max-width: 720px;">
+    <p class="cta-stripe-nudge">Questo è esattamente il tipo di lavoro che fai in sessione — <br>solo che partiamo da te, non da un esempio generico.</p>
+    <a href="mailto:ciao@onda.studio" class="btn btn--dark">
+      Prenota la sessione
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+
+<!-- ─── PER CHI È / NON È ─────────────────────────── -->
+<section class="sec perchi">
+  <div class="wrap">
+    <p class="label gsap-up" style="margin-bottom: 16px;">Sei nel posto giusto?</p>
+    <h2 class="h-section gsap-up" style="margin-bottom: 48px;">Prima di continuare,<br>chiediti una cosa.</h2>
+    <div class="perchi-layout">
+      <div class="perchi-col perchi-col--si gsap-up">
+        <h3 class="perchi-title">Onda fa per te se —</h3>
+        <div class="perchi-list">
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Hai un posto con carattere e vuoi che si veda — e si paghi</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Senti che stai lasciando valore sul tavolo ma non sai esattamente dove</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Vuoi crescere senza rincorrere il volume o il turismo di massa</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Hai già una stagione alle spalle e vuoi capire come evolvere</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Cerchi un punto di vista esterno, non la validazione delle tue idee</p></div>
+        </div>
+      </div>
+      <div class="perchi-col perchi-col--no gsap-up">
+        <h3 class="perchi-title">Probabilmente no se —</h3>
+        <div class="perchi-list">
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Stai cercando qualcuno che esegua, non che pensi con te</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Il tuo obiettivo principale è aumentare le prenotazioni a basso prezzo</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Non sei disposto a cambiare nulla di quello che stai già facendo</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Sei all'inizio e non hai ancora un'offerta attiva su cui lavorare</p></div>
+          <div class="perchi-item"><div class="perchi-dot"></div>
+            <p>Cerchi garanzie di risultato su un investimento non ancora definito</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ─── 11. GARANZIA ───────────────────────────────── -->
 <section class="sec garanzia">
   <div class="wrap">
@@ -1386,6 +1435,20 @@
     </div>
   </div>
 </section>
+
+
+<!-- ─── CTA STRIPE post-garanzia ──────────────────── -->
+<div class="cta-stripe">
+  <div class="wrap" style="max-width: 720px;">
+    <p class="cta-stripe-nudge">Se stai ancora leggendo, probabilmente sai già che vale la pena.<br>Il passo successivo è semplice.</p>
+    <a href="mailto:ciao@onda.studio" class="btn btn--dark">
+      Prenota la sessione
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
 
 
 <!-- ─── 12. FAQ ─────────────────────────────────────── -->
