@@ -1001,6 +1001,79 @@
       .garanzia-box { padding: 28px 22px; }
       .perche-card { padding: 28px 22px; }
     }
+
+    /* ─── INTERVENTO 1: outcome strip unificato ──── */
+    .trasf-outcomes {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+      border-top: 1px solid rgba(12,58,74,.1); padding-top: 44px;
+    }
+    .trasf-outcome-item { display: flex; flex-direction: column; gap: 6px; }
+    .trasf-outcome-icon {
+      font-size: 18px; color: var(--green-deep);
+      margin-bottom: 4px; display: inline-block;
+    }
+    .trasf-outcome-item strong {
+      font-weight: 500; font-size: 15px; color: var(--blue-deep);
+    }
+    .trasf-outcome-item p { font-size: 14px; opacity: .6; line-height: 1.65; }
+    @media (max-width: 860px) {
+      .trasf-outcomes { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    /* ─── INTERVENTO 2: testimonials ─────────────── */
+    .testimonials { background: var(--bg); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--white); border: 1px solid rgba(12,58,74,.08);
+      border-radius: 16px; padding: 36px 32px;
+      position: relative; transition: box-shadow .3s;
+    }
+    .testimonial-card:hover { box-shadow: 0 12px 32px rgba(12,58,74,.07); }
+    .testimonial-mark {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--f-display); font-size: 52px; font-weight: 300;
+      color: var(--blue-deep); opacity: .07; line-height: 1;
+      user-select: none; pointer-events: none;
+    }
+    .testimonial-quote {
+      font-family: var(--f-display); font-size: 18px;
+      font-weight: 300; font-style: italic;
+      color: var(--blue-deep); line-height: 1.55;
+      margin-bottom: 28px; position: relative; z-index: 1;
+    }
+    .testimonial-sep {
+      width: 28px; height: 1px; background: var(--green-deep);
+      margin-bottom: 16px; opacity: .5;
+    }
+    .testimonial-author {
+      font-size: 11px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--blue-deep); opacity: .7;
+    }
+    .testimonial-role { font-size: 12px; opacity: .45; margin-top: 4px; }
+    @media (max-width: 860px) {
+      .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ─── INTERVENTO 3: urgenza capacità ─────────── */
+    .sessione-urgency {
+      margin-top: 20px; padding: 14px 18px;
+      background: rgba(245,240,232,.06);
+      border: 1px solid rgba(245,240,232,.15);
+      border-radius: 10px;
+    }
+    .sessione-urgency p { font-size: 12px; color: var(--bg); opacity: .6; line-height: 1.65; }
+    .sessione-urgency strong { color: var(--sand); opacity: 1; font-weight: 500; }
+
+    /* ─── INTERVENTO 4: Onda wave separator ──────── */
+    .onda-wave-sep {
+      display: block; width: 100%; overflow: hidden;
+      line-height: 0; position: relative; z-index: 2;
+      height: 52px;
+    }
+    .onda-wave-sep svg { display: block; width: 100%; height: 100%; }
   </style>
 </head>
 <body>
@@ -1106,17 +1179,18 @@
       </div>
       <div>
         <div class="vision-data gsap-up">
+          <!-- INTERVENTO 5: statistiche riscritte in chiave operativa — "cosa cambia per me?" -->
+          <div class="vision-stat">
+            <div class="vision-stat-num">3<span>×</span></div>
+            <p class="vision-stat-label">il valore medio per ospite nelle attività con esperienza progettata rispetto a chi offre la stessa location senza disegno. Il differenziale non è la struttura — è l'offerta.</p>
+          </div>
+          <div class="vision-stat">
+            <div class="vision-stat-num">+4<span>m</span></div>
+            <p class="vision-stat-label">mesi di stagione attiva guadagnati in media dagli operatori che hanno ridisegnato la propria offerta. Il punto di svolta è sempre l'offerta — non il meteo, non le piattaforme.</p>
+          </div>
           <div class="vision-stat">
             <div class="vision-stat-num">45<span>%</span></div>
-            <p class="vision-stat-label">delle vendite nel travel premium entro il 2025 sarà guidata da Gen Z e Millennial — la generazione che sceglie esperienze autentiche e paga di più per averle.</p>
-          </div>
-          <div class="vision-stat">
-            <div class="vision-stat-num">$143<span>B</span></div>
-            <p class="vision-stat-label">il potere d'acquisto della Gen Z — un segmento che privilegia autenticità, contatto locale e sostenibilità verificabile rispetto al lusso standardizzato.</p>
-          </div>
-          <div class="vision-stat">
-            <div class="vision-stat-num">2030</div>
-            <p class="vision-stat-label">anno in cui le destinazioni "off the beaten path" vedranno la crescita più forte — esattamente dove operano i clienti di Onda. (Institute for Hospitality Management)</p>
+            <p class="vision-stat-label">del travel premium già guidato da chi sceglie autenticità e connessione locale, disposto a pagare di più per averle. Sono esattamente i tuoi clienti ideali — se sai come parlargli.</p>
           </div>
         </div>
       </div>
@@ -1124,6 +1198,13 @@
   </div>
 </section>
 
+
+<!-- INTERVENTO 4: wave separator — carbon → bg (brand motif Onda) -->
+<div class="onda-wave-sep" aria-hidden="true" style="background:var(--carbon)">
+  <svg viewBox="0 0 1440 52" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,36 C160,14 320,48 480,28 C640,8 800,46 960,24 C1120,2 1280,42 1440,26 L1440,52 L0,52 Z" fill="#F5F0E8"/>
+  </svg>
+</div>
 
 <!-- ─── 3. INSIGHT ──────────────────────────────────── -->
 <section class="sec insight">
@@ -1168,45 +1249,6 @@
 <!-- ─── VSL PLACEHOLDER (attivare con video) ───────── -->
 <div class="vsl-placeholder">
   <div class="wrap" style="max-width:800px;"></div>
-</div>
-
-
-<!-- ─── 5. OPPORTUNITY ──────────────────────────────── -->
-<section class="sec opportunity">
-  <div class="wrap">
-    <div class="opportunity-intro">
-      <p class="label gsap-up">L'opportunità</p>
-      <h2 class="h-display gsap-up">
-        Cosa diventa possibile<br>quando <em>l'esperienza è progettata.</em>
-      </h2>
-    </div>
-    <div class="opportunity-grid">
-      <div class="opp-card gsap-up">
-        <p class="opp-num">01</p>
-        <h3 class="opp-title">Più valore percepito</h3>
-        <p class="opp-text">Stessa struttura, stessa location, stessa qualità reale — ma un'esperienza progettata che giustifica prezzi più alti e attira clienti migliori. Non è magia, è design.</p>
-      </div>
-      <div class="opp-card gsap-up">
-        <p class="opp-num">02</p>
-        <h3 class="opp-title">Più distintività</h3>
-        <p class="opp-text">Smetti di competere sul prezzo. Quando la tua esperienza è unica e riconoscibile, il confronto con i competitor diventa irrilevante. Sei in un mercato diverso.</p>
-      </div>
-      <div class="opp-card gsap-up">
-        <p class="opp-num">03</p>
-        <h3 class="opp-title">Più sostenibilità</h3>
-        <p class="opp-text">Meno clienti, meglio selezionati, che pagano di più e tornano. Stagionalità allargata perché l'esperienza ha senso tutto l'anno. Crescita che non ti logora.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- CTA stripe dopo Opportunity -->
-<div class="cta-stripe">
-  <p class="cta-stripe-nudge">Tutto questo è già nella tua attività. Serve qualcuno che sappia dove guardare.</p>
-  <a href="#sessione" class="btn btn--dark">Prenota la sessione
-    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
 </div>
 
 
@@ -1265,72 +1307,62 @@
   </div>
 </div>
 
-<!-- ─── 7. COSA CAMBIA + RISULTATI ─────────────────── -->
-<section class="sec trasformazioni">
+<!-- INTERVENTO 4: wave separator — editorial break (dark overlay) → trasformazioni (light bg) -->
+<div class="onda-wave-sep" aria-hidden="true" style="background:#0C3A4A">
+  <svg viewBox="0 0 1440 52" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,36 C180,12 360,50 540,30 C720,10 900,46 1080,24 C1260,2 1380,40 1440,28 L1440,52 L0,52 Z" fill="#F5F0E8"/>
+  </svg>
+</div>
+
+<!-- INTERVENTO 1: sezione unificata — merge di opportunity, trasformazioni e risultati (~200 parole) -->
+<section class="sec trasformazioni" id="risultati">
   <div class="wrap">
-    <div class="trasf-layout">
-      <div>
-        <p class="label gsap-up">Cosa cambia nel concreto</p>
-        <h2 class="h-section gsap-up" style="margin-bottom: 16px;">Da servizio<br>a ecosistema.</h2>
-        <p class="body-md gsap-up">Esempi reali di evoluzione. Non sono trasformazioni radicali — sono scelte precise che spostano la percezione e il valore.</p>
-        <div class="trasf-examples">
-          <div class="trasf-row gsap-up">
-            <span class="trasf-from">Lezione di surf</span>
-            <span class="trasf-arrow">→</span>
-            <span class="trasf-to">Percorso progressivo in 3 livelli con community post-corso</span>
-          </div>
-          <div class="trasf-row gsap-up">
-            <span class="trasf-from">B&B con colazione</span>
-            <span class="trasf-arrow">→</span>
-            <span class="trasf-to">Immersione territoriale con produttori locali selezionati</span>
-          </div>
-          <div class="trasf-row gsap-up">
-            <span class="trasf-from">Escursione guidata</span>
-            <span class="trasf-arrow">→</span>
-            <span class="trasf-to">Esperienza narrativa con storia del luogo e rituali locali</span>
-          </div>
-          <div class="trasf-row gsap-up">
-            <span class="trasf-from">Operatore singolo</span>
-            <span class="trasf-arrow">→</span>
-            <span class="trasf-to">Ecosistema con 3-5 partner complementari della zona</span>
-          </div>
-        </div>
+    <p class="label gsap-up">Cosa cambia nel concreto</p>
+    <h2 class="h-section gsap-up" style="margin-bottom:16px;">Da servizio<br>a ecosistema.</h2>
+    <p class="body-md gsap-up" style="max-width:580px;margin-bottom:52px;">Esempi reali di evoluzione. Non trasformazioni radicali — scelte precise che spostano la percezione, il prezzo e la fedeltà del cliente.</p>
+    <div class="trasf-examples" style="margin-bottom:48px;">
+      <div class="trasf-row gsap-up">
+        <span class="trasf-from">Lezione di surf</span>
+        <span class="trasf-arrow">→</span>
+        <span class="trasf-to">Percorso progressivo in 3 livelli con community post-corso</span>
       </div>
-      <div>
-        <p class="label gsap-up">Possibili risultati</p>
-        <h2 class="h-section gsap-up" style="margin-bottom: 16px;">Benefici<br>concreti.</h2>
-        <p class="body-md gsap-up">Non promettiamo numeri. Mostriamo cosa diventa possibile quando l'esperienza è progettata bene.</p>
-        <div class="risultati-grid">
-          <div class="risultato gsap-up">
-            <div class="risultato-icon">↑</div>
-            <strong>Valore medio per cliente</strong>
-            <p>Meno clienti che pagano di più — e sono più soddisfatti.</p>
-          </div>
-          <div class="risultato gsap-up">
-            <div class="risultato-icon">◎</div>
-            <strong>Distintività riconoscibile</strong>
-            <p>Sei scelto per quello che sei, non per il prezzo più basso.</p>
-          </div>
-          <div class="risultato gsap-up">
-            <div class="risultato-icon">↗</div>
-            <strong>Passaparola spontaneo</strong>
-            <p>Le esperienze ben progettate si raccontano. La gente torna e porta altri.</p>
-          </div>
-          <div class="risultato gsap-up">
-            <div class="risultato-icon">⟳</div>
-            <strong>Stagionalità allargata</strong>
-            <p>Un'esperienza con senso funziona tutto l'anno, non solo in alta stagione.</p>
-          </div>
-        </div>
+      <div class="trasf-row gsap-up">
+        <span class="trasf-from">B&B con colazione</span>
+        <span class="trasf-arrow">→</span>
+        <span class="trasf-to">Immersione territoriale con produttori locali selezionati</span>
+      </div>
+      <div class="trasf-row gsap-up">
+        <span class="trasf-from">Escursione guidata</span>
+        <span class="trasf-arrow">→</span>
+        <span class="trasf-to">Esperienza narrativa con storia del luogo e rituali locali</span>
+      </div>
+      <div class="trasf-row gsap-up">
+        <span class="trasf-from">Operatore singolo</span>
+        <span class="trasf-arrow">→</span>
+        <span class="trasf-to">Ecosistema con 3–5 partner complementari della zona</span>
+      </div>
+    </div>
+    <div class="trasf-outcomes">
+      <div class="trasf-outcome-item gsap-up">
+        <span class="trasf-outcome-icon">↑</span>
+        <strong>Valore per cliente</strong>
+        <p>Meno clienti, meglio selezionati. Pagano di più, sono più soddisfatti, e tornano.</p>
+      </div>
+      <div class="trasf-outcome-item gsap-up">
+        <span class="trasf-outcome-icon">◎</span>
+        <strong>Distintività reale</strong>
+        <p>Sei scelto per quello che sei. Il confronto con i competitor smette di essere rilevante.</p>
+      </div>
+      <div class="trasf-outcome-item gsap-up">
+        <span class="trasf-outcome-icon">↗</span>
+        <strong>Stagionalità allargata</strong>
+        <p>Un'esperienza con senso funziona tutto l'anno — non solo nei mesi di punta.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-
-
-<!-- CTA stripe dopo Risultati -->
+<!-- CTA stripe — unico dopo unified section -->
 <div class="cta-stripe">
   <p class="cta-stripe-nudge">Questi risultati partono da una sola conversazione.</p>
   <a href="#sessione" class="btn btn--dark">Prenota la sessione
@@ -1389,6 +1421,37 @@
             <p>Le esperienze che generano racconti non sono le più costose — sono le più intenzionali. Si sentono progettate per loro.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- INTERVENTO 2: testimonials — 3 placeholder dopo case studies credibilità -->
+<section class="sec testimonials">
+  <div class="wrap">
+    <p class="label gsap-up">Chi lo ha già fatto</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card gsap-up">
+        <span class="testimonial-mark">"</span>
+        <p class="testimonial-quote">[TESTIMONIAL — max 2 frasi con dettaglio concreto su cosa è cambiato dopo la sessione]</p>
+        <div class="testimonial-sep"></div>
+        <p class="testimonial-author">[NOME] — [RUOLO]</p>
+        <p class="testimonial-role">[Tipologia attività], [Luogo]</p>
+      </div>
+      <div class="testimonial-card gsap-up">
+        <span class="testimonial-mark">"</span>
+        <p class="testimonial-quote">[TESTIMONIAL — max 2 frasi con dettaglio concreto su cosa è cambiato dopo la sessione]</p>
+        <div class="testimonial-sep"></div>
+        <p class="testimonial-author">[NOME] — [RUOLO]</p>
+        <p class="testimonial-role">[Tipologia attività], [Luogo]</p>
+      </div>
+      <div class="testimonial-card gsap-up">
+        <span class="testimonial-mark">"</span>
+        <p class="testimonial-quote">[TESTIMONIAL — max 2 frasi con dettaglio concreto su cosa è cambiato dopo la sessione]</p>
+        <div class="testimonial-sep"></div>
+        <p class="testimonial-author">[NOME] — [RUOLO]</p>
+        <p class="testimonial-role">[Tipologia attività], [Luogo]</p>
       </div>
     </div>
   </div>
@@ -1518,6 +1581,11 @@
             </svg>
           </a>
           <p style="font-size: 12px; opacity: .45; margin-top: 16px; line-height: 1.6;">Se poi decidi di lavorare insieme, il costo si scala dal primo progetto.</p>
+        </div>
+        <!-- INTERVENTO 3: urgenza reale — capacity limit + finestra stagionale -->
+        <div class="sessione-urgency">
+          <p><strong>Posti limitati.</strong> Accetto massimo 8 sessioni al mese per garantire preparazione e qualità su ogni caso.</p>
+          <p style="margin-top:6px;">La prossima stagione parte tra poche settimane — chi prenota ora ha tempo di implementare prima dell'estate.</p>
         </div>
       </div>
     </div>
