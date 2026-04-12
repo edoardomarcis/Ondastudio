@@ -1067,13 +1067,41 @@
     .sessione-urgency p { font-size: 12px; color: var(--bg); opacity: .6; line-height: 1.65; }
     .sessione-urgency strong { color: var(--sand); opacity: 1; font-weight: 500; }
 
-    /* ─── INTERVENTO 4: Onda wave separator ──────── */
+    /* ─── INTERVENTO 4: Onda brand wave system ───── */
+
+    /* Fill transition: dark section → light section */
     .onda-wave-sep {
       display: block; width: 100%; overflow: hidden;
       line-height: 0; position: relative; z-index: 2;
       height: 52px;
     }
     .onda-wave-sep svg { display: block; width: 100%; height: 100%; }
+
+    /* Stroke brand wave — recurring visual signature */
+    .onda-sig {
+      display: block; width: 100%;
+      padding: 32px 0; position: relative; z-index: 1;
+    }
+    .onda-sig svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .onda-sig path {
+      /* paths start invisible; JS sets getTotalLength() and animates in */
+      stroke-dashoffset: 9999;
+    }
+
+    /* Hero background wave — atmospheric, large scale */
+    .hero-wave-bg {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 110px; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .hero-wave-bg svg { display: block; width: 100%; height: 100%; }
+
+    /* CTA top wave accent — ghosted on dark background */
+    .cta-wave-accent {
+      position: absolute; bottom: 40px; left: 0; right: 0;
+      pointer-events: none; z-index: 0; overflow: hidden;
+      height: 64px; opacity: .18;
+    }
+    .cta-wave-accent svg { display: block; width: 100%; height: 100%; }
   </style>
 </head>
 <body>
@@ -1107,6 +1135,15 @@
       <a href="#problem" class="btn btn--ghost">Inizia dall'inizio →</a>
     </div>
   </div>
+  <!-- INTERVENTO 4: hero background wave — firma visiva Onda -->
+  <div class="hero-wave-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 110" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,70 C160,30 360,95 600,58 C840,21 1060,82 1440,52" stroke="#0C3A4A" stroke-width="1.8" opacity=".1" fill="none"/>
+      <path d="M0,82 C200,44 420,100 680,66 C940,32 1180,88 1440,64" stroke="#1E6E75" stroke-width="1.2" opacity=".07" fill="none"/>
+      <path d="M0,94 C240,58 460,105 740,74 C1020,43 1260,95 1440,76" stroke="#2A6B5E" stroke-width=".8" opacity=".05" fill="none"/>
+    </svg>
+  </div>
+
   <div class="hero-visual" id="h-visual">
     <div class="hero-photos">
       <div class="photo-frame hero-photo-back">
@@ -1252,6 +1289,15 @@
 </div>
 
 
+<!-- INTERVENTO 4: onda-sig — separatore brand wave tra Insight e Approccio -->
+<div class="onda-sig" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,32 C120,14 280,44 440,24 C600,4 740,38 920,20 C1100,2 1260,34 1440,22" stroke="#0C3A4A" stroke-width="1.5" fill="none"/>
+    <path d="M0,28 C100,10 260,40 420,20 C580,0 720,36 900,18 C1080,0 1240,30 1440,18" stroke="#1E6E75" stroke-width="1" fill="none"/>
+    <path d="M0,36 C140,20 300,48 460,30 C620,12 760,42 940,24 C1120,6 1280,38 1440,26" stroke="#2A6B5E" stroke-width=".75" fill="none"/>
+  </svg>
+</div>
+
 <!-- ─── 6. APPROCCIO ────────────────────────────────── -->
 <section class="sec approccio">
   <div class="wrap">
@@ -1362,6 +1408,15 @@
   </div>
 </section>
 
+<!-- INTERVENTO 4: onda-sig — dopo trasformazioni, prima del CTA stripe -->
+<div class="onda-sig" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,32 C120,14 280,44 440,24 C600,4 740,38 920,20 C1100,2 1260,34 1440,22" stroke="#0C3A4A" stroke-width="1.5" fill="none"/>
+    <path d="M0,28 C100,10 260,40 420,20 C580,0 720,36 900,18 C1080,0 1240,30 1440,18" stroke="#1E6E75" stroke-width="1" fill="none"/>
+    <path d="M0,36 C140,20 300,48 460,30 C620,12 760,42 940,24 C1120,6 1280,38 1440,26" stroke="#2A6B5E" stroke-width=".75" fill="none"/>
+  </svg>
+</div>
+
 <!-- CTA stripe — unico dopo unified section -->
 <div class="cta-stripe">
   <p class="cta-stripe-nudge">Questi risultati partono da una sola conversazione.</p>
@@ -1426,6 +1481,15 @@
   </div>
 </section>
 
+
+<!-- INTERVENTO 4: onda-sig — tra credibilità e testimonials -->
+<div class="onda-sig" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,32 C120,14 280,44 440,24 C600,4 740,38 920,20 C1100,2 1260,34 1440,22" stroke="#0C3A4A" stroke-width="1.5" fill="none"/>
+    <path d="M0,28 C100,10 260,40 420,20 C580,0 720,36 900,18 C1080,0 1240,30 1440,18" stroke="#1E6E75" stroke-width="1" fill="none"/>
+    <path d="M0,36 C140,20 300,48 460,30 C620,12 760,42 940,24 C1120,6 1280,38 1440,26" stroke="#2A6B5E" stroke-width=".75" fill="none"/>
+  </svg>
+</div>
 
 <!-- INTERVENTO 2: testimonials — 3 placeholder dopo case studies credibilità -->
 <section class="sec testimonials">
@@ -1499,6 +1563,15 @@
   </div>
 </section>
 
+
+<!-- INTERVENTO 4: onda-sig — tra about-me e micro-bridge -->
+<div class="onda-sig" aria-hidden="true">
+  <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,32 C120,14 280,44 440,24 C600,4 740,38 920,20 C1100,2 1260,34 1440,22" stroke="#0C3A4A" stroke-width="1.5" fill="none"/>
+    <path d="M0,28 C100,10 260,40 420,20 C580,0 720,36 900,18 C1080,0 1240,30 1440,18" stroke="#1E6E75" stroke-width="1" fill="none"/>
+    <path d="M0,36 C140,20 300,48 460,30 C620,12 760,42 940,24 C1120,6 1280,38 1440,26" stroke="#2A6B5E" stroke-width=".75" fill="none"/>
+  </svg>
+</div>
 
 <!-- ─── micro-bridge ──────────────────────────────── -->
 <div class="micro-bridge">
@@ -1768,6 +1841,13 @@
 <!-- ─── 13. CTA DOPPIA ──────────────────────────────── -->
 <section class="cta-top">
   <div class="wrap">
+    <!-- INTERVENTO 4: wave accent nel CTA finale — firma su sfondo scuro -->
+    <div class="cta-wave-accent" aria-hidden="true">
+      <svg viewBox="0 0 1440 64" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,36 C160,10 360,58 600,28 C840,0 1080,50 1440,24" stroke="#C8BCA6" stroke-width="2" fill="none"/>
+        <path d="M0,48 C200,22 420,62 680,34 C940,6 1180,56 1440,36" stroke="#F5F0E8" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
     <p class="cta-label gsap-up">Inizia ora</p>
     <h2 class="h-display h-display--light gsap-up">
       La tua attività merita<br>di essere <em>progettata.</em>
@@ -1851,6 +1931,27 @@
     nav.style.padding = window.scrollY > 50
       ? `16px var(--pad)` : `28px var(--pad)`;
   }, { passive:true });
+
+  // INTERVENTO 4: Onda brand wave — animated draw-in on scroll
+  document.querySelectorAll('.onda-sig').forEach(sig => {
+    const paths = sig.querySelectorAll('path');
+    paths.forEach(path => {
+      const len = Math.ceil(path.getTotalLength());
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+    });
+    gsap.to(Array.from(paths), {
+      strokeDashoffset: 0,
+      duration: 2.2,
+      ease: 'power2.inOut',
+      stagger: 0.18,
+      scrollTrigger: {
+        trigger: sig,
+        start: 'top 92%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
 
   // FAQ accordion
   document.querySelectorAll('.faq-question').forEach(btn => {
