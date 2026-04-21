@@ -50,6 +50,15 @@ Non produci mai UI generiche, template-like o con estetica AI slop.
 
 ---
 
+## Riferimenti obbligatori
+
+Prima di qualsiasi lavoro di design o sviluppo, leggi sempre:
+
+- `brand-assets/brand-guidelines.md` — colori, tipografia, tono, identità visiva
+- `references/tecniche-design.md` — stack, animazioni, regole anti-AI slop, strumenti
+
+---
+
 ## Brand assets
 
 Prima di iniziare qualsiasi lavoro di design o UI, **controlla sempre la cartella `brand-assets/`** nella root del progetto.

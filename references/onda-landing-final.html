@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONDA — Experience Design per Hospitality</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #2c2c2a;
+            background: #fefdfb;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #0f6e56;
+            font-family: Georgia, serif;
+        }
+
+        .hero .subtitle {
+            font-size: 18px;
+            color: #5f5e5a;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: #0f6e56;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #085041;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #0f6e56;
+            border: 1px solid #0f6e56;
+        }
+
+        .btn-outline:hover {
+            background: #f1efe8;
+        }
+
+        /* SECTION */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid #e0dcd2;
+        }
+
+        .section.alt {
+            background: #f9f8f4;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: #2c2c2a;
+            font-family: Georgia, serif;
+            line-height: 1.3;
+        }
+
+        .section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #2c2c2a;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: #5f5e5a;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        /* PAIN SECTION */
+        .pain-list {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pain-list li {
+            padding: 16px 0;
+            font-size: 16px;
+            color: #5f5e5a;
+            border-bottom: 1px solid #e0dcd2;
+        }
+
+        .pain-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pain-list strong {
+            color: #2c2c2a;
+        }
+
+        /* CASE STUDIES */
+        .case-study {
+            background: white;
+            border: 1px solid #e0dcd2;
+            padding: 28px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .case-study h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f6e56;
+            margin-bottom: 12px;
+        }
+
+        .case-study .detail {
+            font-size: 14px;
+            color: #888780;
+            margin-bottom: 12px;
+        }
+
+        .case-study p {
+            font-size: 15px;
+            color: #5f5e5a;
+            font-style: italic;
+        }
+
+        /* HOW IT WORKS */
+        .steps {
+            display: grid;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .step {
+            padding-left: 56px;
+            position: relative;
+        }
+
+        .step-num {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: #0f6e56;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .step h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c2c2a;
+        }
+
+        .step p {
+            font-size: 15px;
+            color: #5f5e5a;
+            margin: 0;
+        }
+
+        /* RISK REVERSAL */
+        .risk-box {
+            background: #0f6e56;
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .risk-box h3 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-family: Georgia, serif;
+        }
+
+        .risk-box p {
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 12px;
+        }
+
+        .risk-box .highlight {
+            font-size: 24px;
+            font-weight: 600;
+            color: #5dcaa5;
+            margin: 20px 0;
+        }
+
+        /* TESTIMONIAL */
+        .testimonial {
+            background: white;
+            border-left: 4px solid #0f6e56;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .testimonial p {
+            font-size: 15px;
+            color: #5f5e5a;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .testimonial .author {
+            font-size: 14px;
+            color: #2c2c2a;
+            font-weight: 600;
+        }
+
+        /* WHO */
+        .who-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .who-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* FOOTER CTA */
+        .footer-cta {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            font-size: 28px;
+            margin-bottom: 32px;
+            font-family: Georgia, serif;
+        }
+
+        /* TAGS */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f1efe8;
+            color: #5f5e5a;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* CRITERIA */
+        .criteria {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .criteria-box {
+            padding: 20px;
+            background: white;
+            border: 1px solid #e0dcd2;
+            border-radius: 8px;
+        }
+
+        .criteria-box h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f6e56;
+            margin-bottom: 12px;
+        }
+
+        .criteria-box ul {
+            list-style: none;
+            font-size: 14px;
+            color: #5f5e5a;
+        }
+
+        .criteria-box li {
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .criteria-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0f6e56;
+            font-weight: bold;
+        }
+
+        .criteria-box.no li:before {
+            content: "✗";
+            color: #a32d2d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Cresci.<br>Senza vendere l'anima.</h1>
+            <p class="subtitle">
+                In 60 minuti scopri come aumentare fatturato e stagione<br>
+                mantenendo l'anima della tua attività.
+            </p>
+            <button class="btn" onclick="scrollTo('booking')">Prenota la sessione (120€)</button>
+        </section>
+
+        <!-- PAIN -->
+        <section class="section alt">
+            <h2>Ti riconosci?</h2>
+            <ul class="pain-list">
+                <li><strong>Ogni anno la stessa cosa.</strong> Stesso risultato. I clienti arrivano, poi spariscono.</li>
+                <li><strong>Il ticket non si muove.</strong> Sai che potresti aumentare i prezzi, ma non senza cambiare qualcosa.</li>
+                <li><strong>Schiavo della stagione.</strong> 4 mesi buoni, 8 mesi di sopravvivenza.</li>
+                <li><strong>Il tuo locale ha perso l'anima.</strong> Non è più quello che amavi quando hai iniziato.</li>
+            </ul>
+            <p><strong>Ma il tuo locale ha potenziale.</strong> Solo che è difficile vederlo da dentro.</p>
+        </section>
+
+        <!-- CASE STUDIES -->
+        <section class="section">
+            <h2>Quello che funziona veramente.</h2>
+            <p style="margin-bottom: 32px;">Ho visto trasformare attività in meno di un anno. Non sono ristrutturazioni. Sono ridisegni di quello che già avevano.</p>
+
+            <div class="case-study">
+                <h4>Enoteca — Sardegna</h4>
+                <div class="detail">Da evento settimanale a 4 eventi/settimana in 3 anni</div>
+                <p>Una piccola enoteca ha deciso di creare un'esperienza: cene in barca con degustazioni. Non più un locale che serve vino. Un'esperienza che la gente prenota, condivide, condivide ancora. Da 1 evento/settimana a 4 eventi/settimana con 16 persone a evento. Marginalità altissime. Instagrammabile. Indimenticabile.</p>
+            </div>
+
+            <div class="case-study">
+                <h4>Uliveto — Regione Centro</h4>
+                <div class="detail">Evento settimanale con musica live e atmosfera unica</div>
+                <p>Un uliveto di famiglia trasformato in esperienza. Stessa formula: evento settimanale, stessa crescita progressiva. Il luogo che era vuoto tutto l'anno diventa un appuntamento che le persone cercano. Comunità che ritorna.</p>
+            </div>
+
+            <div class="case-study">
+                <h4>Surf house</h4>
+                <div class="detail">Ospiti che tornano 3+ volte l'anno</div>
+                <p>Non è il luogo. È la comunità. Gli ospiti tornano costantemente perché si sentono parte di qualcosa. Non comprano una camera. Comprano appartenenza. E pagano di conseguenza.</p>
+            </div>
+
+            <div class="case-study">
+                <h4>B&B tradizionale — Costa</h4>
+                <div class="detail">Gite settimanali + community tra ospiti</div>
+                <p>Un B&B che sembrava uguale agli altri ha aggiunto gite settimanali in gommone e creato comunità tra gli ospiti. Non più transazioni. Relazioni. Le persone tornano e spendono di più.</p>
+            </div>
+        </section>
+
+        <!-- COME FUNZIONA -->
+        <section class="section alt">
+            <h2>La Strategic Experience Session.</h2>
+            <p>60–75 minuti. Non un audit generico. Uno sguardo specifico su di te, dove stai lasciando valore, come aumentarlo.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h4>Prima</h4>
+                    <p>Mi racconti l'attività, i problemi reali. Compili un form veloce. Arrivi preparato.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h4>Durante</h4>
+                    <p>Analizziamo l'offerta, identifichiamo i gap, esploriamo le opportunità. Pensi con un advisor, non con un consulente.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h4>Dopo</h4>
+                    <p>Entro 48h ricevi una roadmap scritta: le 3–5 opportunità concrete, ordinate per impatto. Subito usabile.</p>
+                </div>
+            </div>
+
+            <button class="btn" onclick="scrollTo('booking')">Prenota la sessione</button>
+        </section>
+
+        <!-- RISK REVERSAL -->
+        <section class="section">
+            <div class="risk-box">
+                <h3>Investi meno di una cena.<br>Zero rischio.</h3>
+                <p><strong>100–250€</strong> per la sessione.</p>
+                <p style="margin-bottom: 24px; margin-top: 24px;">Se continui a lavorare con me →<br>il costo si scala dal primo progetto.</p>
+                <div class="highlight">La sessione ti costa zero.</div>
+                <p style="margin-top: 24px; margin-bottom: 0;">Se non continui → hai una roadmap che vale 10x tanto.</p>
+            </div>
+
+            <p style="text-align: center; font-size: 16px; color: #5f5e5a; margin-bottom: 32px;">
+                <strong>L'unico rischio è non fare nulla di quello che scopri.</strong>
+            </p>
+
+            <button class="btn" onclick="scrollTo('booking')" style="width: 100%;">Prenota la sessione</button>
+        </section>
+
+        <!-- CHI SONO -->
+        <section class="section alt">
+            <h2>Chi sono.</h2>
+            <p>Sono Edoardo. Ho imparato sul campo.</p>
+            <p>Ho lavorato con operatori in Italia e negli Emirati. Ho studiato mercati dove l'experience economy funziona già: Portogallo, Canarie, Marocco, Sud-est asiatico.</p>
+            <p>Non ho un approccio accademico. Il mio metodo viene dall'osservazione diretta: cosa funziona davvero, perché funziona, e come si traduce nel contesto specifico di ogni operatore.</p>
+            <p style="margin-top: 32px; font-style: italic; border-left: 4px solid #0f6e56; padding-left: 20px;">
+                "I luoghi migliori che ho visitato non erano i più famosi. Erano quelli dove qualcuno aveva pensato a quello che volevi sentire."
+            </p>
+            <p style="margin-top: 20px;">Onda nasce da questa convinzione: il potenziale dei luoghi viene spesso lasciato non progettato. Non per mancanza di qualità, ma perché manca qualcuno che aiuti a vederlo e disegnarlo.</p>
+
+            <div class="tags">
+                <span class="tag">Milano</span>
+                <span class="tag">Dubai</span>
+                <span class="tag">In movimento</span>
+            </div>
+        </section>
+
+        <!-- CRITERIA -->
+        <section class="section">
+            <h2>Sei nel posto giusto?</h2>
+            <p style="margin-bottom: 32px;">Prima di continuare, chiediti una cosa.</p>
+
+            <div class="criteria">
+                <div class="criteria-box">
+                    <h4>Sì, per te</h4>
+                    <ul>
+                        <li>Hai un'attività con carattere</li>
+                        <li>Senti che stai lasciando valore</li>
+                        <li>Vuoi crescere senza volume</li>
+                        <li>Cerchi uno sguardo esterno</li>
+                    </ul>
+                </div>
+
+                <div class="criteria-box no">
+                    <h4 style="color: #a32d2d;">Probabilmente no</h4>
+                    <ul>
+                        <li>Cerchi esecutore, non pensiero</li>
+                        <li>Vuoi prenotazioni a basso prezzo</li>
+                        <li>Non vuoi cambiare nulla</li>
+                        <li>Cerchi garanzie di risultato</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section alt">
+            <h2>Domande veloci.</h2>
+
+            <div style="margin-bottom: 28px;">
+                <h3 style="color: #0f6e56;">È davvero 60 minuti?</h3>
+                <p>Sì. Strutturato, specifico su di te. Non generico.</p>
+            </div>
+
+            <div style="margin-bottom: 28px;">
+                <h3 style="color: #0f6e56;">Mi servirà per il mio caso?</h3>
+                <p>Se riconosci la tua attività nelle sezioni sopra, sì. Se no, te lo dico nella prima 5 minuti e non continuiamo.</p>
+            </div>
+
+            <div style="margin-bottom: 28px;">
+                <h3 style="color: #0f6e56;">E se non continuo a lavorare con te?</h3>
+                <p>Hai una roadmap concreta che vale molto più di 100–250€. La usi e basta.</p>
+            </div>
+
+            <div style="margin-bottom: 28px;">
+                <h3 style="color: #0f6e56;">Quando posso prenotare?</h3>
+                <p>Accetto max 8 sessioni al mese. Posti limitati. La prossima stagione inizia tra poche settimane.</p>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="footer-cta">
+            <h2>Se sei arrivato fino a qui,<br>la domanda non è se farlo.<br>È quando.</h2>
+            <p style="font-size: 16px; color: #5f5e5a; margin-bottom: 32px;">Chi prenota adesso ha tempo di implementare prima dell'estate.</p>
+            <button class="btn" id="booking" onclick="document.location='#booking-form'">Prenota la sessione</button>
+        </section>
+
+    </div>
+</body>
+</html>
