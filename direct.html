@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sessione Strategica Onda — Trasforma la tua attività</title>
+  <meta name="description" content="60 minuti per scoprire come aumentare fatturato e stagione mantenendo l'anima della tua attività.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --bg:         #F5F0E8;
+      --bg-alt:     #F0EBE0;
+      --blue-deep:  #0C3A4A;
+      --blue-soft:  #1E6E75;
+      --green-deep: #2A6B5E;
+      --green-soft: #5A9E8E;
+      --sand:       #C8BCA6;
+      --warm:       #D4B896;
+      --carbon:     #1C1A18;
+      --white:      #FFFFFF;
+      --f-disp: 'Cormorant Garamond', serif;
+      --f-body: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--carbon);
+      font-family: var(--f-body);
+      overflow-x: hidden;
+    }
+
+    /* grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none; opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    .wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 80px);
+    }
+
+    /* ─── BUTTONS ──────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--f-body); font-size: 14px; font-weight: 500;
+      letter-spacing: 0.05em; text-decoration: none; cursor: pointer;
+      border: none; transition: all .35s ease;
+      border-radius: 8px; padding: 16px 36px;
+    }
+    .btn--dark { background: var(--blue-deep); color: var(--white); }
+    .btn--dark:hover { background: var(--carbon); transform: translateY(-2px); }
+    .btn--light { background: var(--white); color: var(--blue-deep); }
+    .btn--light:hover { background: var(--sand); }
+    .btn--outline { border: 1.5px solid rgba(255,255,255,.5); color: var(--white); background: transparent; }
+    .btn--outline:hover { background: rgba(255,255,255,.12); }
+
+    .em { color: var(--green-deep); font-style: normal; }
+    .em-sand { color: var(--sand); }
+
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(12,58,74,.15) 0%, rgba(12,58,74,.75) 100%),
+        url('brand-assets/costa-tramonto.jpg') center/cover no-repeat;
+    }
+
+    /* decorative circle */
+    .hero-circle {
+      position: absolute;
+      width: clamp(400px, 50vw, 720px);
+      height: clamp(400px, 50vw, 720px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      top: 50%; left: 60%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-circle::before {
+      content: '';
+      position: absolute; inset: 40px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+    }
+
+    .hero-body {
+      position: relative; z-index: 2;
+      padding: clamp(60px, 10vw, 120px) 0;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 11px; font-weight: 500; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--sand);
+      margin-bottom: 32px;
+    }
+    .hero-tag::before {
+      content: ''; display: block;
+      width: 36px; height: 1px; background: var(--sand);
+    }
+
+    .hero-h1 {
+      font-family: var(--f-disp);
+      font-weight: 300;
+      font-size: clamp(60px, 9vw, 112px);
+      line-height: 1.03;
+      letter-spacing: -1px;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--sand);
+    }
+
+    .hero-sub {
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.8;
+      color: rgba(255,255,255,.82);
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       PAIN
+    ───────────────────────────────────────────── */
+    .pain-section {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* large decorative number */
+    .pain-section::before {
+      content: '?';
+      font-family: var(--f-disp);
+      font-size: clamp(320px, 40vw, 600px);
+      font-weight: 300;
+      color: var(--blue-deep);
+      opacity: .04;
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .pain-left h2 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(44px, 6vw, 72px);
+      line-height: 1.1;
+      color: var(--blue-deep);
+      letter-spacing: -.4px;
+      margin-bottom: 32px;
+    }
+
+    .pain-left p {
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.85;
+      opacity: .75;
+    }
+
+    .pain-list {
+      list-style: none;
+      display: grid;
+      gap: 0;
+    }
+
+    .pain-item {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(12,58,74,.1);
+    }
+    .pain-item:last-child { border-bottom: none; }
+
+    .pain-item strong {
+      display: block;
+      font-size: clamp(17px, 2vw, 22px);
+      font-weight: 600;
+      color: var(--blue-deep);
+      margin-bottom: 8px;
+    }
+
+    .pain-item span {
+      font-size: clamp(15px, 1.8vw, 19px);
+      opacity: .7;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 880px) {
+      .pain-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+
+    /* ─────────────────────────────────────────────
+       SOCIAL PROOF STRIPE
+    ───────────────────────────────────────────── */
+    .stripe {
+      background:
+        linear-gradient(rgba(12,58,74,.92), rgba(12,58,74,.92)),
+        url('brand-assets/acqua.jpg') center/cover no-repeat;
+      padding: clamp(48px, 8vw, 80px) 0;
+    }
+
+    .stripe-inner {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      flex-wrap: wrap;
+    }
+
+    .stripe-stat {
+      flex: 1; min-width: 160px;
+      text-align: center;
+    }
+
+    .stripe-num {
+      font-family: var(--f-disp);
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: 8px;
+      white-space: nowrap;
+    }
+
+    .stripe-label {
+      font-size: 14px;
+      color: rgba(255,255,255,.68);
+      letter-spacing: .04em;
+    }
+
+    .stripe-divider {
+      width: 1px; height: 64px;
+      background: rgba(255,255,255,.15);
+    }
+
+    @media (max-width: 680px) {
+      .stripe-divider { display: none; }
+    }
+
+
+    /* ─────────────────────────────────────────────
+       CASE STUDIES
+    ───────────────────────────────────────────── */
+    .cases-section {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--bg);
+    }
+
+    .cases-header {
+      text-align: center;
+      margin-bottom: 64px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cases-header h2 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.1;
+      letter-spacing: -.4px;
+      color: var(--blue-deep);
+      margin-bottom: 20px;
+    }
+
+    .cases-header p {
+      font-size: clamp(16px, 2vw, 21px);
+      line-height: 1.85;
+      opacity: .75;
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .cases-grid { grid-template-columns: 1fr; }
+    }
+
+    .case-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 460px;
+      display: flex; align-items: flex-end;
+      opacity: 0; transform: translateY(40px);
+    }
+
+    .case-img {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform .8s ease;
+    }
+
+    .case-card:hover .case-img {
+      transform: scale(1.04);
+    }
+
+    .case-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,58,74,.88) 0%, rgba(12,58,74,.15) 55%, transparent 100%);
+    }
+
+    .case-body {
+      position: relative; z-index: 2;
+      padding: 36px;
+      color: var(--white);
+      width: 100%;
+    }
+
+    .case-tag {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--sand);
+      margin-bottom: 12px;
+    }
+
+    .case-body h4 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(22px, 2.5vw, 32px);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .case-body p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.82);
+    }
+
+
+    /* ─────────────────────────────────────────────
+       HOW IT WORKS
+    ───────────────────────────────────────────── */
+    .how-section {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--bg-alt);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* decorative wave shape top */
+    .how-section::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0; right: 0;
+      height: 80px;
+      background: var(--bg);
+      clip-path: ellipse(55% 100% at 50% 0%);
+    }
+
+    .how-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .how-header h2 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.1;
+      letter-spacing: -.4px;
+      color: var(--blue-deep);
+      margin-bottom: 24px;
+    }
+
+    .how-header p {
+      font-size: clamp(16px, 2vw, 21px);
+      line-height: 1.85;
+      opacity: .75;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps-row::before {
+      content: '';
+      position: absolute;
+      top: 36px; left: 16.5%; right: 16.5%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--sand) 20%, var(--sand) 80%, transparent);
+    }
+
+    @media (max-width: 860px) {
+      .steps-row { grid-template-columns: 1fr; }
+      .steps-row::before { display: none; }
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 32px;
+    }
+
+    .step-num {
+      width: 72px; height: 72px;
+      background: var(--white);
+      border: 1px solid rgba(12,58,74,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--f-disp);
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--blue-deep);
+      margin: 0 auto 32px;
+      position: relative; z-index: 2;
+    }
+
+    .step h4 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(22px, 2.5vw, 30px);
+      color: var(--blue-deep);
+      margin-bottom: 16px;
+    }
+
+    .step p {
+      font-size: clamp(15px, 1.8vw, 18px);
+      line-height: 1.85;
+      opacity: .73;
+    }
+
+    .how-cta {
+      text-align: center;
+      margin-top: 72px;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       RISK
+    ───────────────────────────────────────────── */
+    .risk-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--blue-deep);
+      padding: clamp(80px, 12vw, 140px) 0;
+    }
+
+    /* SVG wave top */
+    .risk-section::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0; right: 0;
+      height: 80px;
+      background: var(--bg-alt);
+      clip-path: ellipse(55% 100% at 50% 0%);
+    }
+
+    /* background circles */
+    .risk-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .risk-bg-circle:nth-child(1) {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(90,158,142,.18) 0%, transparent 70%);
+      right: -100px; top: -100px;
+    }
+    .risk-bg-circle:nth-child(2) {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(200,188,166,.1) 0%, transparent 70%);
+      left: -80px; bottom: -80px;
+    }
+
+    .risk-inner {
+      position: relative; z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .risk-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .risk-left h2 {
+      font-family: var(--f-disp);
+      font-weight: 300;
+      font-size: clamp(48px, 7vw, 84px);
+      line-height: 1.05;
+      letter-spacing: -.6px;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+
+    .risk-price {
+      font-family: var(--f-disp);
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .risk-price-label {
+      font-size: 16px;
+      color: rgba(255,255,255,.6);
+      margin-bottom: 40px;
+    }
+
+    .risk-right {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .risk-point {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .risk-icon {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 22px;
+    }
+
+    .risk-point-text strong {
+      display: block;
+      font-size: 16px; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .risk-point-text span {
+      font-size: 15px;
+      color: rgba(255,255,255,.68);
+      line-height: 1.7;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       CHI SONO
+    ───────────────────────────────────────────── */
+    .who-section {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .who-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .who-img-wrap {
+      position: relative;
+      height: 620px;
+    }
+
+    /* shared photo card style */
+    .photo-card {
+      position: absolute;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+      padding: 8px 8px 28px;
+      box-shadow: 0 8px 32px rgba(12,58,74,.18), 0 2px 8px rgba(12,58,74,.1);
+    }
+
+    .photo-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    /* card 1: large, Edoardo in Giappone — bottom-left anchor */
+    .photo-card--1 {
+      width: 260px; height: 310px;
+      left: 0; bottom: 0;
+      transform: rotate(-2.5deg);
+      z-index: 2;
+    }
+
+    /* card 2: medium, Lisbona tram — top-left, slightly over card 1 */
+    .photo-card--2 {
+      width: 190px; height: 240px;
+      left: 40px; top: 0;
+      transform: rotate(1.8deg);
+      z-index: 3;
+    }
+
+    /* card 3: medium, Bali resort — top-right */
+    .photo-card--3 {
+      width: 210px; height: 260px;
+      right: 20px; top: 20px;
+      transform: rotate(-1.2deg);
+      z-index: 2;
+    }
+
+    /* card 4: small, acqua turchese — bottom-right */
+    .photo-card--4 {
+      width: 160px; height: 190px;
+      right: 0; bottom: 40px;
+      transform: rotate(2.8deg);
+      z-index: 4;
+    }
+
+    /* portrait foto di Edoardo above the collage */
+    .who-edoardo {
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 6px solid var(--white);
+      box-shadow: 0 8px 32px rgba(12,58,74,.25);
+      z-index: 5;
+    }
+
+    .who-edoardo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 880px) {
+      .who-img-wrap { height: 420px; }
+      .photo-card--1 { width: 200px; height: 240px; }
+      .photo-card--2 { width: 150px; height: 190px; }
+      .photo-card--3 { width: 160px; height: 200px; }
+      .photo-card--4 { width: 120px; height: 150px; }
+    }
+
+    .who-content h2 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(42px, 5.5vw, 64px);
+      line-height: 1.1;
+      letter-spacing: -.3px;
+      color: var(--blue-deep);
+      margin-bottom: 32px;
+    }
+
+    .who-content p {
+      font-size: clamp(16px, 1.9vw, 21px);
+      line-height: 1.85;
+      opacity: .75;
+      margin-bottom: 24px;
+    }
+
+    .who-quote {
+      border-left: 3px solid var(--green-deep);
+      padding-left: 28px;
+      margin: 40px 0;
+    }
+
+    .who-quote p {
+      font-style: italic;
+      font-size: clamp(18px, 2.2vw, 26px) !important;
+      opacity: .78 !important;
+      line-height: 1.75;
+    }
+
+    .who-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+
+    .who-tag {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--green-deep);
+      background: rgba(42,107,94,.08);
+      padding: 8px 16px; border-radius: 20px;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       CRITERIA
+    ───────────────────────────────────────────── */
+    .criteria-section {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--bg-alt);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .criteria-section::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 0; right: 0;
+      height: 80px;
+      background: var(--bg);
+      clip-path: ellipse(55% 100% at 50% 0%);
+    }
+
+    .criteria-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .criteria-header h2 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.1;
+      letter-spacing: -.4px;
+      color: var(--blue-deep);
+      margin-bottom: 20px;
+    }
+
+    .criteria-header p {
+      font-size: clamp(16px, 2vw, 21px);
+      opacity: .72;
+      line-height: 1.8;
+    }
+
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .criteria-grid { grid-template-columns: 1fr; }
+    }
+
+    .criteria-box {
+      background: var(--white);
+      border: 1px solid rgba(12,58,74,.08);
+      padding: 44px;
+      border-radius: 12px;
+    }
+
+    .criteria-box h4 {
+      font-family: var(--f-disp);
+      font-weight: 500;
+      font-size: 22px;
+      color: var(--green-deep);
+      margin-bottom: 28px;
+    }
+    .criteria-box.no h4 { color: #b83030; }
+
+    .criteria-box ul { list-style: none; }
+
+    .criteria-box li {
+      display: flex; gap: 14px; align-items: flex-start;
+      font-size: clamp(15px, 1.8vw, 18px);
+      line-height: 1.7; opacity: .75;
+      margin-bottom: 16px;
+    }
+
+    .criteria-box li span.check {
+      color: var(--green-deep); font-weight: 700;
+      font-size: 18px; flex-shrink: 0;
+      margin-top: -1px;
+    }
+    .criteria-box.no li span.check { color: #b83030; }
+
+
+    /* ─────────────────────────────────────────────
+       FAQ
+    ───────────────────────────────────────────── */
+    .faq-section {
+      padding: clamp(80px, 12vw, 140px) 0;
+      background: var(--bg);
+    }
+
+    .faq-header {
+      text-align: center;
+    }
+
+    .faq-header h2 {
+      font-family: var(--f-disp);
+      font-weight: 400;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 1.1;
+      letter-spacing: -.4px;
+      color: var(--blue-deep);
+      margin-bottom: 60px;
+    }
+
+    .faq-item {
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(12,58,74,.1);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .faq-item:last-child { border-bottom: none; }
+
+    @media (max-width: 768px) {
+      .faq-item { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    .faq-item h4 {
+      font-size: clamp(17px, 2vw, 22px);
+      font-weight: 500;
+      color: var(--blue-deep);
+      line-height: 1.4;
+    }
+
+    .faq-item p {
+      font-size: clamp(15px, 1.8vw, 19px);
+      line-height: 1.85;
+      opacity: .73;
+    }
+
+
+    /* ─────────────────────────────────────────────
+       FINAL CTA
+    ───────────────────────────────────────────── */
+    .cta-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      display: flex; align-items: center;
+    }
+
+    .cta-img {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(12,58,74,.55) 0%, rgba(12,58,74,.3) 100%),
+        url('brand-assets/surf-tramonto.jpg') center/cover no-repeat;
+    }
+
+    .cta-inner {
+      position: relative; z-index: 2;
+      padding: clamp(80px, 12vw, 140px) 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .cta-headline {
+      text-align: center;
+      max-width: 680px;
+    }
+
+    .cta-headline h2 {
+      font-family: var(--f-disp);
+      font-weight: 300;
+      font-size: clamp(32px, 4.5vw, 60px);
+      line-height: 1.2;
+      letter-spacing: -.3px;
+      color: var(--white);
+      margin-bottom: 16px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      .cta-headline h2 { white-space: normal; }
+    }
+
+    .cta-headline h2 em {
+      font-style: italic;
+      color: var(--sand);
+    }
+
+    .cta-headline p {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+    }
+
+    .cta-box {
+      background: var(--blue-deep);
+      border-radius: 14px;
+      padding: 40px 48px;
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .cta-btns {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      justify-content: center;
+    }
+
+    .cta-tag {
+      font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .14em;
+      color: var(--sand); opacity: .8;
+      margin-bottom: 16px;
+    }
+
+    .cta-price {
+      font-family: var(--f-disp);
+      font-size: clamp(52px, 7vw, 80px);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1;
+      margin-bottom: 36px;
+      letter-spacing: -1px;
+    }
+
+    .cta-checklist {
+      list-style: none;
+      text-align: left;
+      display: grid;
+      gap: 16px;
+      margin-bottom: 40px;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-checklist li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: rgba(255,255,255,.82);
+      line-height: 1.6;
+    }
+
+    .cta-check {
+      color: var(--sand);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .cta-checklist strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .btn-paypal {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #FFC439;
+      color: #003087;
+      font-family: var(--f-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 44px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all .3s ease;
+      letter-spacing: .02em;
+      margin-bottom: 20px;
+    }
+
+    .btn-paypal:hover {
+      background: #f0b429;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,196,57,.3);
+    }
+
+    .cta-note {
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 0 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────── HERO ────── -->
+  <section class="hero" id="top">
+    <div class="hero-img"></div>
+    <div class="hero-circle"></div>
+    <div class="wrap">
+      <div class="hero-body">
+        <div class="hero-tag">Onda Studio — Strategic Experience Session</div>
+        <h1 class="hero-h1">
+          Cresci.<br>
+          Senza vendere<br>
+          <em>l'anima</em>.
+        </h1>
+        <p class="hero-sub">
+          In 60 minuti scopri come aumentare fatturato e stagione
+          mantenendo l'anima della tua attività.
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+          <a href="#booking" class="btn btn--light">Prenota la sessione (120€)</a>
+          <a href="#come-funziona" class="btn btn--outline">Come funziona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── PAIN ────── -->
+  <section class="pain-section">
+    <div class="wrap">
+      <div class="pain-grid">
+        <div class="pain-left">
+          <h2>Ti riconosci<em class="em">?</em></h2>
+          <p>
+            Ogni anno la stessa stagione. Stesso sforzo, stesso risultato.
+            La tua attività ha un'anima — ma non riesce a tradurla in valore.
+          </p>
+          <br><br>
+          <p style="font-family: var(--f-disp); font-size: clamp(22px, 2.5vw, 30px); font-weight:400; color: var(--blue-deep); opacity:1; line-height:1.4;">
+            <span class="em">Il potenziale c'è.</span><br>
+            Manca qualcuno che aiuti<br>a vederlo — e progettarlo.
+          </p>
+        </div>
+        <div class="pain-right">
+          <ul class="pain-list">
+            <li class="pain-item">
+              <strong>Ogni anno la stessa cosa.</strong>
+              <span>Stesso risultato. I clienti arrivano, poi spariscono.</span>
+            </li>
+            <li class="pain-item">
+              <strong>Il ticket non si muove.</strong>
+              <span>Sai che potresti aumentare i prezzi, ma non senza cambiare qualcosa.</span>
+            </li>
+            <li class="pain-item">
+              <strong>Schiavo della stagione.</strong>
+              <span>4 mesi buoni, 8 mesi di sopravvivenza.</span>
+            </li>
+            <li class="pain-item">
+              <strong>La tua attività ha perso l'anima.</strong>
+              <span>Non è più quello che amavi quando hai iniziato.</span>
+            </li>
+          </ul>
+          <p style="margin-top: 40px; font-size: clamp(16px, 1.9vw, 20px); line-height: 1.8; font-weight: 500; color: var(--blue-deep);">
+            Ma la tua attività ha <span class="em">potenziale</span>.<br>Solo che è difficile vederlo da dentro.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── STRIPE STATS ────── -->
+  <div class="stripe">
+    <div class="wrap">
+      <div class="stripe-inner">
+        <div class="stripe-stat">
+          <div class="stripe-num">75–90'</div>
+          <div class="stripe-label">per una roadmap completa</div>
+        </div>
+        <div class="stripe-divider"></div>
+        <div class="stripe-stat">
+          <div class="stripe-num">+30%</div>
+          <div class="stripe-label">durata della stagione</div>
+        </div>
+        <div class="stripe-divider"></div>
+        <div class="stripe-stat">
+          <div class="stripe-num">+25%</div>
+          <div class="stripe-label">incremento di fatturato per cliente</div>
+        </div>
+        <div class="stripe-divider"></div>
+        <div class="stripe-stat">
+          <div class="stripe-num">10×</div>
+          <div class="stripe-label">il valore percepito rispetto al prezzo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ────── CASE STUDIES ────── -->
+  <section class="cases-section">
+    <div class="wrap">
+      <div class="cases-header">
+        <h2>Quello che funziona <em class="em">veramente</em>.</h2>
+        <p>
+          Ho visto trasformare attività in meno di un anno.
+          Non sono ristrutturazioni — sono ridisegni di quello che già avevano.
+        </p>
+      </div>
+
+      <div class="cases-grid">
+
+        <div class="case-card">
+          <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1504280317859-94dde9cc2a38?auto=format&fit=crop&w=1400&q=80');"></div>
+          <div class="case-overlay"></div>
+          <div class="case-body">
+            <div class="case-tag">Enoteca — Sardegna</div>
+            <h4>Da 1 a <span class="em-sand">4 eventi/settimana</span> in 3 anni</h4>
+            <p>Cene in barca con degustazioni. Non più un'attività che serve vino. Un'esperienza che la gente prenota, condivide, ricorda. Da 1 evento/settimana a 4 con 16 persone a evento. Marginalità altissime. Indimenticabile.</p>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="case-overlay"></div>
+          <div class="case-body">
+            <div class="case-tag">Uliveto — Regione Centro</div>
+            <h4>Evento settimanale con <span class="em-sand">musica live</span> e atmosfera unica</h4>
+            <p>Un uliveto di famiglia trasformato in esperienza. Stessa formula: evento settimanale, stessa crescita progressiva. Il luogo vuoto tutto l'anno diventa un appuntamento che le persone cercano. Comunità che ritorna.</p>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="case-overlay"></div>
+          <div class="case-body">
+            <div class="case-tag">Surf house</div>
+            <h4>Ospiti che tornano <span class="em-sand">3+ volte l'anno</span></h4>
+            <p>Non è il luogo. È la comunità. Gli ospiti tornano perché si sentono parte di qualcosa. Non comprano una camera. Comprano appartenenza. E pagano di conseguenza.</p>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-img" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="case-overlay"></div>
+          <div class="case-body">
+            <div class="case-tag">B&B tradizionale — Costa</div>
+            <h4>Gite settimanali + <span class="em-sand">community tra ospiti</span></h4>
+            <p>Un B&B che sembrava uguale agli altri ha aggiunto gite settimanali in gommone e creato comunità tra gli ospiti. Non più transazioni. Relazioni. Le persone tornano e spendono di più.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── HOW IT WORKS ────── -->
+  <section class="how-section" id="come-funziona">
+    <div class="wrap">
+      <div class="how-header">
+        <h2>La <em class="em">Strategic Experience Session</em>.</h2>
+        <p>60–75 minuti. Uno sguardo specifico su di te — dove stai lasciando valore, come aumentarlo.</p>
+      </div>
+
+      <div class="steps-row">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Prima</h4>
+          <p>Mi racconti l'attività, i problemi reali. Compili un form veloce. Arrivi preparato.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Durante</h4>
+          <p>Analizziamo l'offerta, identifichiamo i gap, esploriamo le opportunità. Pensi con un advisor, non con un consulente.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Dopo</h4>
+          <p>Entro 48h ricevi una roadmap scritta: le 3–5 opportunità concrete, ordinate per impatto.</p>
+        </div>
+      </div>
+
+      <div class="how-cta">
+        <a href="#booking" class="btn btn--dark">Prenota la sessione</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── RISK ────── -->
+  <section class="risk-section">
+    <div class="risk-bg-circle"></div>
+    <div class="risk-bg-circle"></div>
+    <div class="wrap">
+      <div class="risk-inner">
+        <div class="risk-left">
+          <h2>Investi meno<br>di una cena.<br><span class="em-sand">Zero rischio.</span></h2>
+          <div class="risk-price">120€</div>
+          <div class="risk-price-label">per la sessione completa</div>
+          <a href="#booking" class="btn btn--outline">Prenota adesso</a>
+        </div>
+        <div class="risk-right">
+          <div class="risk-point">
+            <div class="risk-icon">→</div>
+            <div class="risk-point-text">
+              <strong>Se continui a lavorare con me</strong>
+              <span>Il costo della sessione si scala integralmente dal primo progetto. Ti costa zero.</span>
+            </div>
+          </div>
+          <div class="risk-point">
+            <div class="risk-icon">✓</div>
+            <div class="risk-point-text">
+              <strong>Se non continui</strong>
+              <span>Hai una roadmap concreta che vale 10× il costo della sessione. La usi e basta.</span>
+            </div>
+          </div>
+          <div class="risk-point">
+            <div class="risk-icon">!</div>
+            <div class="risk-point-text">
+              <strong>L'unico rischio reale</strong>
+              <span>Non fare nulla di quello che scopri.</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 12px; padding: 20px 24px; border: 1px solid rgba(200,188,166,.3); border-radius: 10px; text-align: center;">
+            <span style="font-family: var(--f-disp); font-size: clamp(28px, 3.5vw, 40px); font-weight: 300; color: var(--sand); letter-spacing: -.2px;">
+              La sessione ti costa zero.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── CHI SONO ────── -->
+  <section class="who-section">
+    <div class="wrap">
+      <div class="who-grid">
+        <div class="who-img-wrap">
+          <div class="photo-card photo-card--1">
+            <img src="brand-assets/giappone.jpg" alt="Giappone">
+          </div>
+          <div class="photo-card photo-card--2">
+            <img src="brand-assets/lisbona.jpg" alt="Lisbona">
+          </div>
+          <div class="photo-card photo-card--3">
+            <img src="brand-assets/bali.jpg" alt="Bali">
+          </div>
+          <div class="photo-card photo-card--4">
+            <img src="brand-assets/acqua.jpg" alt="Mare">
+          </div>
+          <div class="who-edoardo">
+            <img src="brand-assets/EM_O (2) 2-modified.png" alt="Edoardo Marcis">
+          </div>
+        </div>
+        <div class="who-content">
+          <h2>Chi sono.</h2>
+          <p>Sono Edoardo. Ho imparato sul campo.</p>
+          <p>Ho lavorato con operatori in Italia e negli Emirati. Ho studiato mercati dove l'<span class="em">experience economy funziona già</span>: Portogallo, Canarie, Marocco, Sud-est asiatico.</p>
+          <p>Non ho un approccio accademico. Il mio metodo viene dall'osservazione diretta: cosa funziona davvero, perché funziona, come si traduce nel contesto specifico di ogni operatore.</p>
+          <div class="who-quote">
+            <p>"I luoghi migliori che ho visitato non erano i più famosi. Erano quelli dove qualcuno aveva pensato a quello che volevi sentire."</p>
+          </div>
+          <div class="who-tags">
+            <span class="who-tag">Milano</span>
+            <span class="who-tag">Dubai</span>
+            <span class="who-tag">In movimento</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── CRITERIA ────── -->
+  <section class="criteria-section">
+    <div class="wrap">
+      <div class="criteria-header">
+        <h2>Sei nel posto <em class="em">giusto?</em></h2>
+        <p>Prima di continuare, chiediti una cosa.</p>
+      </div>
+      <div class="criteria-grid">
+        <div class="criteria-box">
+          <h4>Sì, è per te</h4>
+          <ul>
+            <li><span class="check">✓</span> Hai un'attività con carattere</li>
+            <li><span class="check">✓</span> Senti che stai lasciando valore</li>
+            <li><span class="check">✓</span> Vuoi crescere senza volume</li>
+            <li><span class="check">✓</span> Cerchi uno sguardo esterno</li>
+          </ul>
+        </div>
+        <div class="criteria-box no">
+          <h4>Probabilmente no</h4>
+          <ul>
+            <li><span class="check">✗</span> Cerchi esecutore, non pensiero</li>
+            <li><span class="check">✗</span> Vuoi prenotazioni a basso prezzo</li>
+            <li><span class="check">✗</span> Non vuoi cambiare nulla</li>
+            <li><span class="check">✗</span> Cerchi garanzie di risultato</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── FAQ ────── -->
+  <section class="faq-section">
+    <div class="wrap">
+      <div class="faq-header">
+        <h2>Domande <em class="em">veloci</em>.</h2>
+      </div>
+      <div>
+        <div class="faq-item">
+          <h4>È davvero 60 minuti?</h4>
+          <p>Sì. Strutturato, specifico su di te. Non generico.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Mi servirà per il mio caso?</h4>
+          <p>Se riconosci la tua attività nelle sezioni sopra, sì. Se no, te lo dico nei primi 5 minuti e non continuiamo.</p>
+        </div>
+        <div class="faq-item">
+          <h4>E se non continuo a lavorare con te?</h4>
+          <p>Hai una roadmap concreta che vale molto più di 120€. La usi e basta.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Quando posso prenotare?</h4>
+          <p>Accetto max 8 sessioni al mese. Posti limitati. La prossima stagione inizia tra poche settimane.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ────── FINAL CTA ────── -->
+  <section class="cta-section" id="booking">
+    <div class="cta-img"></div>
+    <div class="wrap">
+      <div class="cta-inner">
+
+        <!-- Titolo fuori dal box -->
+        <div class="cta-headline">
+          <h2>Se sei arrivato fino a qui,<br>la domanda non è <em>se farlo</em>.<br>È <span class="em-sand">quando</span>.</h2>
+          <p>Chi prenota adesso ha tempo di implementare prima dell'estate.</p>
+        </div>
+
+        <!-- Box pagamento -->
+        <div class="cta-box">
+          <div class="cta-tag">Strategic Experience Session</div>
+          <div class="cta-price">120€</div>
+
+          <ul class="cta-checklist">
+            <li>
+              <span class="cta-check">→</span>
+              <span>Ricevi subito il mio <strong>report sul futuro del turismo</strong></span>
+            </li>
+            <li>
+              <span class="cta-check">→</span>
+              <span>Ricevi tutti i <strong>dettagli su come funziona la sessione</strong></span>
+            </li>
+            <li>
+              <span class="cta-check">→</span>
+              <span>Ricevi il <strong>link per prenotare la data</strong> della tua sessione</span>
+            </li>
+          </ul>
+
+          <!-- PayPal button — inserire email PayPal -->
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+            <input type="hidden" name="item_name" value="Strategic Experience Session — Onda Studio">
+            <input type="hidden" name="amount" value="120.00">
+            <input type="hidden" name="currency_code" value="EUR">
+            <input type="hidden" name="no_shipping" value="1">
+            <button type="submit" class="btn-paypal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.144 19.532l1.049-5.751c.11-.605.691-1.047 1.304-1.047h6.236c2.258 0 3.757-1.116 4.27-3.317.045-.19.073-.369.091-.542-.617.308-1.338.47-2.149.47H11.87c-.613 0-1.194.442-1.304 1.047l-1.985 10.896c-.085.466.254.894.726.894H12.6c.536 0 .994-.388 1.078-.917l.043-.23.856-4.7.055-.299a1.09 1.09 0 011.078-.917h.68c4.398 0 6.617-2.43 6.617-7.363 0-1.896-.427-3.4-1.239-4.52C20.495 2.7 18.044 2 14.887 2H7.027C6.15 2 5.406 2.627 5.268 3.49L2.004 21.502c-.104.573.337 1.098.917 1.098h3.376l.847-3.068z"/></svg>
+              Paga con PayPal
+            </button>
+          </form>
+
+          <p class="cta-note">Pagamento sicuro via PayPal. Ricevi conferma immediata via email.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Case cards
+    gsap.utils.toArray('.case-card').forEach((el, i) => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.9,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+        delay: i * 0.12
+      });
+    });
+
+    // Steps
+    gsap.utils.toArray('.step').forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0, y: 24, duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+        delay: i * 0.15
+      });
+    });
+
+    // Stripe stats counter
+    gsap.utils.toArray('.stripe-num').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          el.style.opacity = '0';
+          gsap.to(el, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' });
+        }
+      });
+    });
+
+    // Risk points
+    gsap.utils.toArray('.risk-point').forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0, x: 24, duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+        delay: i * 0.15
+      });
+    });
+  </script>
+
+</body>
+</html>
