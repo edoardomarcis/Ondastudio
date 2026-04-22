@@ -1017,22 +1017,50 @@
     }
 
     /* ── LEAD FORM ── */
+    .lead-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 480px;
+      width: 100%;
+      color: rgba(255,255,255,.3);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .lead-divider::before,
+    .lead-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,.15);
+    }
+
     .lead-form-wrap {
       text-align: center;
       max-width: 480px;
       width: 100%;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      padding: 32px 36px;
+    }
+
+    .lead-form-title {
+      font-family: var(--f-disp);
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
 
     .lead-form-label {
-      font-size: 13px;
-      color: rgba(255,255,255,.45);
-      letter-spacing: .04em;
-      margin-bottom: 14px;
-    }
-
-    .lead-form-label strong {
-      color: rgba(255,255,255,.7);
-      font-weight: 500;
+      font-size: 14px;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 20px;
+      line-height: 1.6;
     }
 
     .lead-form {
@@ -1623,8 +1651,11 @@
         </div>
 
         <!-- Lead form — via d'uscita soft -->
+        <div class="lead-divider">oppure</div>
+
         <div class="lead-form-wrap">
-          <p class="lead-form-label">Non sei ancora pronto?<br><strong>Lascia la mail — ti mando risorse utili sul tema.</strong></p>
+          <p class="lead-form-title">Non sei ancora pronto?</p>
+          <p class="lead-form-label">Lascia la mail — ti mando risorse utili sul tema.</p>
           <form class="lead-form" id="leadForm">
             <input class="lead-input" type="email" placeholder="la tua email" required>
             <button class="lead-btn" type="submit">Resto aggiornato</button>
