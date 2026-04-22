@@ -1041,8 +1041,8 @@
       text-align: center;
       max-width: 480px;
       width: 100%;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
       border-radius: 14px;
       padding: 32px 36px;
     }
@@ -1095,13 +1095,18 @@
       font-family: var(--f-body);
       cursor: pointer;
       white-space: nowrap;
-      transition: all .25s;
+      transition: background .3s ease, border-color .3s ease, color .3s ease;
     }
 
-    .lead-btn:hover {
-      background: rgba(255,255,255,.1);
-      border-color: rgba(255,255,255,.5);
+    .lead-btn:not(:disabled) {
+      background: var(--blue-deep);
+      border-color: var(--blue-deep);
       color: var(--white);
+    }
+
+    .lead-btn:not(:disabled):hover {
+      background: #1a6a8a;
+      border-color: #1a6a8a;
     }
 
     .lead-consent {
