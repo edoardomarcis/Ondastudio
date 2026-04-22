@@ -1016,6 +1016,78 @@
       margin-bottom: 0 !important;
     }
 
+    /* ── LEAD FORM ── */
+    .lead-form-wrap {
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .lead-form-label {
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      letter-spacing: .04em;
+      margin-bottom: 14px;
+    }
+
+    .lead-form-label strong {
+      color: rgba(255,255,255,.7);
+      font-weight: 500;
+    }
+
+    .lead-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .lead-input {
+      flex: 1;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 8px;
+      padding: 13px 18px;
+      font-size: 15px;
+      color: var(--white);
+      outline: none;
+      font-family: var(--f-body);
+      transition: border-color .25s;
+    }
+
+    .lead-input::placeholder { color: rgba(255,255,255,.35); }
+    .lead-input:focus { border-color: rgba(255,255,255,.4); }
+
+    .lead-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 8px;
+      padding: 13px 22px;
+      color: rgba(255,255,255,.8);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: var(--f-body);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .25s;
+    }
+
+    .lead-btn:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.5);
+      color: var(--white);
+    }
+
+    .lead-feedback {
+      font-size: 13px;
+      margin-top: 10px;
+      min-height: 18px;
+      color: var(--sand);
+    }
+
+    @media (max-width: 520px) {
+      .lead-form { flex-direction: column; }
+      .lead-btn { width: 100%; }
+    }
+
     /* ── GROWTH MAP ── */
     .growthmap-section {
       background: var(--blue-deep);
@@ -1550,6 +1622,16 @@
           <p class="cta-note">Pagamento sicuro via PayPal. Ricevi conferma immediata via email.</p>
         </div>
 
+        <!-- Lead form — via d'uscita soft -->
+        <div class="lead-form-wrap">
+          <p class="lead-form-label">Non sei ancora pronto?<br><strong>Lascia la mail — ti mando risorse utili sul tema.</strong></p>
+          <form class="lead-form" id="leadForm">
+            <input class="lead-input" type="email" placeholder="la tua email" required>
+            <button class="lead-btn" type="submit">Resto aggiornato</button>
+          </form>
+          <p class="lead-feedback" id="leadFeedback"></p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1609,6 +1691,56 @@
         scrollTrigger: { trigger: el, start: 'top 88%' },
         delay: i * 0.15
       });
+    });
+
+    // Brevo lead form
+    const BREVO_API_KEY = 'YOUR_BREVO_API_KEY'; // sostituisci con la tua API key
+    const BREVO_LIST_ID = 0; // sostituisci con l'ID della lista Brevo
+
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value.trim();
+      const feedback = document.getElementById('leadFeedback');
+      const btn = this.querySelector('button');
+
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      try {
+        const res = await fetch('https://api.brevo.com/v3/contacts', {
+          method: 'POST',
+          headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'api-key': BREVO_API_KEY,
+          },
+          body: JSON.stringify({
+            email,
+            listIds: [BREVO_LIST_ID],
+            updateEnabled: true,
+          }),
+        });
+
+        if (res.ok || res.status === 204) {
+          feedback.textContent = 'Perfetto, ci sentiamo presto.';
+          this.reset();
+        } else {
+          const data = await res.json();
+          // contact already exists — treat as success
+          if (res.status === 400 && data.code === 'duplicate_parameter') {
+            feedback.textContent = 'Sei già in lista, grazie.';
+          } else {
+            feedback.style.color = 'rgba(255,100,100,.8)';
+            feedback.textContent = 'Qualcosa non ha funzionato, riprova.';
+          }
+        }
+      } catch {
+        feedback.style.color = 'rgba(255,100,100,.8)';
+        feedback.textContent = 'Errore di rete, riprova.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Resto aggiornato';
+      }
     });
   </script>
 
