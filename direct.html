@@ -1104,6 +1104,34 @@
       color: var(--white);
     }
 
+    .lead-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 14px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .lead-consent input[type="checkbox"] {
+      flex-shrink: 0;
+      width: 16px; height: 16px;
+      margin-top: 2px;
+      accent-color: var(--sand);
+      cursor: pointer;
+    }
+
+    .lead-consent span {
+      font-size: 12px;
+      color: rgba(255,255,255,.4);
+      line-height: 1.5;
+    }
+
+    .lead-btn:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
     .lead-feedback {
       font-size: 13px;
       margin-top: 10px;
@@ -1658,8 +1686,12 @@
           <p class="lead-form-label">Lascia la mail — ti mando risorse utili sul tema.</p>
           <form class="lead-form" id="leadForm">
             <input class="lead-input" type="email" placeholder="la tua email" required>
-            <button class="lead-btn" type="submit">Resto aggiornato</button>
+            <button class="lead-btn" type="submit" id="leadSubmit" disabled>Resto aggiornato</button>
           </form>
+          <label class="lead-consent">
+            <input type="checkbox" id="leadConsent">
+            <span>Acconsento al trattamento della mia email per ricevere comunicazioni da Onda Studio, in linea con il GDPR.</span>
+          </label>
           <p class="lead-feedback" id="leadFeedback"></p>
         </div>
 
@@ -1722,6 +1754,11 @@
         scrollTrigger: { trigger: el, start: 'top 88%' },
         delay: i * 0.15
       });
+    });
+
+    // Consent toggle
+    document.getElementById('leadConsent').addEventListener('change', function() {
+      document.getElementById('leadSubmit').disabled = !this.checked;
     });
 
     // Brevo lead form
